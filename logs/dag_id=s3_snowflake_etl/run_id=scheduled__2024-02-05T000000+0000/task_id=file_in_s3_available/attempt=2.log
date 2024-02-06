@@ -1,0 +1,30 @@
+[2024-02-06T17:26:15.766+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: s3_snowflake_etl.file_in_s3_available scheduled__2024-02-05T00:00:00+00:00 [queued]>
+[2024-02-06T17:26:15.787+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: s3_snowflake_etl.file_in_s3_available scheduled__2024-02-05T00:00:00+00:00 [queued]>
+[2024-02-06T17:26:15.788+0000] {taskinstance.py:2170} INFO - Starting attempt 2 of 3
+[2024-02-06T17:26:15.810+0000] {taskinstance.py:2191} INFO - Executing <Task(S3KeySensor): file_in_s3_available> on 2024-02-05 00:00:00+00:00
+[2024-02-06T17:26:15.818+0000] {standard_task_runner.py:60} INFO - Started process 393 to run task
+[2024-02-06T17:26:15.823+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 's3_snowflake_etl', 'file_in_s3_available', 'scheduled__2024-02-05T00:00:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/S3_to_Snowflake_DAG.py', '--cfg-path', '/tmp/tmplhwkll_o']
+[2024-02-06T17:26:15.827+0000] {standard_task_runner.py:88} INFO - Job 4: Subtask file_in_s3_available
+[2024-02-06T17:26:15.893+0000] {task_command.py:423} INFO - Running <TaskInstance: s3_snowflake_etl.file_in_s3_available scheduled__2024-02-05T00:00:00+00:00 [running]> on host 79019d796c34
+[2024-02-06T17:26:15.995+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='stellar' AIRFLOW_CTX_DAG_ID='s3_snowflake_etl' AIRFLOW_CTX_TASK_ID='file_in_s3_available' AIRFLOW_CTX_EXECUTION_DATE='2024-02-05T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-02-05T00:00:00+00:00'
+[2024-02-06T17:26:15.997+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/amazon/aws/sensors/s3.py", line 144, in execute
+    super().execute(context)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/sensors/base.py", line 265, in execute
+    raise e
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/sensors/base.py", line 247, in execute
+    poke_return = self.poke(context)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/amazon/aws/sensors/s3.py", line 137, in poke
+    return self._check_key(self.bucket_key)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/amazon/aws/sensors/s3.py", line 105, in _check_key
+    bucket_name, key = S3Hook.get_s3_bucket_key(self.bucket_name, key, "bucket_name", "bucket_key")
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 263, in get_s3_bucket_key
+    raise TypeError(
+TypeError: If `bucket_name` is provided, bucket_key should be a relative path from root level, rather than a full s3:// url
+[2024-02-06T17:26:16.009+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=s3_snowflake_etl, task_id=file_in_s3_available, execution_date=20240205T000000, start_date=20240206T172615, end_date=20240206T172616
+[2024-02-06T17:26:16.028+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 4 for task file_in_s3_available (If `bucket_name` is provided, bucket_key should be a relative path from root level, rather than a full s3:// url; 393)
+[2024-02-06T17:26:16.076+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-02-06T17:26:16.120+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
