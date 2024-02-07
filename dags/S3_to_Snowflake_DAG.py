@@ -60,7 +60,7 @@ with DAG("s3_snowflake_etl",
         task_id = "copy_csv_into_snowflake_table",
         snowflake_conn_id = "conn_id_snowflake",
         sql = """
-            COPY INTO rabbit_mission.lunar.full_moon_time FROM @s3_stage FILE_FORMAT = csv_format
+            COPY INTO rabbit_mission.lunar.full_moon_time FROM @rabbit_mission.lunar.s3_stage FILE_FORMAT = csv_format
         """
     
     )
@@ -69,7 +69,7 @@ with DAG("s3_snowflake_etl",
 
     t4 = EmailOperator(
         task_id="notify_by_email",
-        to=["grittapop.p@gmail.com"],
+        to=["stellar.p@gmail.com"],
         subject="Loaded data into snowflake successfully on {{ ds }}",
         html_content="Your pipeline has loaded data into snowflake successfully",
     

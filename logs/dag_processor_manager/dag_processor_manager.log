@@ -19176,3 +19176,123 @@ File Path                                 PID    Runtime      # DAGs    # Errors
 /opt/airflow/dags/S3_to_Snowflake_DAG.py                           1           0  1.45s           2024-02-06T22:51:29
 ================================================================================
 [2024-02-06T22:52:23.137+0000] {manager.py:451} INFO - Exiting gracefully upon receiving signal 15
+[2024-02-07T06:04:18.863+0000] {manager.py:469} INFO - Processing files using up to 2 processes at a time 
+[2024-02-07T06:04:18.864+0000] {manager.py:470} INFO - Process each file at most once every 30 seconds
+[2024-02-07T06:04:18.865+0000] {manager.py:471} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2024-02-07T06:04:18.866+0000] {manager.py:738} INFO - Searching for files in /opt/airflow/dags
+[2024-02-07T06:04:18.906+0000] {manager.py:741} INFO - There are 1 files in /opt/airflow/dags
+[2024-02-07T06:04:20.202+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                   PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  ----------
+/opt/airflow/dags/S3_to_Snowflake_DAG.py     33  0.12s             0           0
+================================================================================
+[2024-02-07T06:04:50.518+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/S3_to_Snowflake_DAG.py                           1           0  7.57s           2024-02-07T06:04:27
+================================================================================
+[2024-02-07T06:05:21.059+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/S3_to_Snowflake_DAG.py                           1           0  1.16s           2024-02-07T06:04:59
+================================================================================
+[2024-02-07T06:05:51.490+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/S3_to_Snowflake_DAG.py                           1           0  1.17s           2024-02-07T06:05:30
+================================================================================
+[2024-02-07T06:06:21.788+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/S3_to_Snowflake_DAG.py                           1           0  1.50s           2024-02-07T06:06:02
+================================================================================
+[2024-02-07T06:06:33.109+0000] {manager.py:451} INFO - Exiting gracefully upon receiving signal 15
+[2024-02-07T06:06:33.113+0000] {manager.py:451} INFO - Exiting gracefully upon receiving signal 15
+[2024-02-07T06:06:34.426+0000] {manager.py:451} INFO - Exiting gracefully upon receiving signal 15
+[2024-02-07T06:25:40.004+0000] {manager.py:469} INFO - Processing files using up to 2 processes at a time 
+[2024-02-07T06:25:40.004+0000] {manager.py:470} INFO - Process each file at most once every 30 seconds
+[2024-02-07T06:25:40.005+0000] {manager.py:471} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2024-02-07T06:25:40.006+0000] {manager.py:738} INFO - Searching for files in /opt/airflow/dags
+[2024-02-07T06:25:40.026+0000] {manager.py:741} INFO - There are 1 files in /opt/airflow/dags
+[2024-02-07T06:25:40.521+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                   PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  ----------
+/opt/airflow/dags/S3_to_Snowflake_DAG.py     34  0.03s             0           0
+================================================================================
+[2024-02-07T06:26:10.812+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/S3_to_Snowflake_DAG.py                           1           0  1.76s           2024-02-07T06:25:42
+================================================================================
+[2024-02-07T06:26:40.870+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/S3_to_Snowflake_DAG.py                           1           0  1.15s           2024-02-07T06:26:13
+================================================================================
+[2024-02-07T06:27:11.197+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/S3_to_Snowflake_DAG.py                           1           0  1.14s           2024-02-07T06:26:44
+================================================================================
+[2024-02-07T06:27:41.509+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/S3_to_Snowflake_DAG.py                           1           0  1.32s           2024-02-07T06:27:16
+================================================================================
+[2024-02-07T06:28:12.026+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/S3_to_Snowflake_DAG.py                           1           0  1.26s           2024-02-07T06:27:48
+================================================================================
+[2024-02-07T06:28:42.565+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/S3_to_Snowflake_DAG.py                           1           0  1.14s           2024-02-07T06:28:19
+================================================================================
+[2024-02-07T06:29:12.990+0000] {manager.py:879} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                 PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+----------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/S3_to_Snowflake_DAG.py                           1           0  1.64s           2024-02-07T06:28:51
+================================================================================
+[2024-02-07T06:29:22.033+0000] {manager.py:451} INFO - Exiting gracefully upon receiving signal 15
+[2024-02-07T06:29:22.034+0000] {manager.py:451} INFO - Exiting gracefully upon receiving signal 15
+[2024-02-07T06:29:22.772+0000] {manager.py:451} INFO - Exiting gracefully upon receiving signal 15
