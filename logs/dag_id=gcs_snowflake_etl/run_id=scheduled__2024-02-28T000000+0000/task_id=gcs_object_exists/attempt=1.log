@@ -1,0 +1,107 @@
+[2024-02-29T17:13:24.356+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gcs_snowflake_etl.gcs_object_exists scheduled__2024-02-28T00:00:00+00:00 [queued]>
+[2024-02-29T17:13:24.377+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gcs_snowflake_etl.gcs_object_exists scheduled__2024-02-28T00:00:00+00:00 [queued]>
+[2024-02-29T17:13:24.378+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2024-02-29T17:13:24.420+0000] {taskinstance.py:2191} INFO - Executing <Task(GCSObjectExistenceSensor): gcs_object_exists> on 2024-02-28 00:00:00+00:00
+[2024-02-29T17:13:24.434+0000] {standard_task_runner.py:60} INFO - Started process 67 to run task
+[2024-02-29T17:13:24.448+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'gcs_snowflake_etl', 'gcs_object_exists', 'scheduled__2024-02-28T00:00:00+00:00', '--job-id', '280', '--raw', '--subdir', 'DAGS_FOLDER/GCS_to_Snowflake_DAG.py', '--cfg-path', '/tmp/tmpmahfpxbq']
+[2024-02-29T17:13:24.454+0000] {standard_task_runner.py:88} INFO - Job 280: Subtask gcs_object_exists
+[2024-02-29T17:13:24.568+0000] {task_command.py:423} INFO - Running <TaskInstance: gcs_snowflake_etl.gcs_object_exists scheduled__2024-02-28T00:00:00+00:00 [running]> on host 1753c686362f
+[2024-02-29T17:13:24.735+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='stellar' AIRFLOW_CTX_DAG_ID='gcs_snowflake_etl' AIRFLOW_CTX_TASK_ID='gcs_object_exists' AIRFLOW_CTX_EXECUTION_DATE='2024-02-28T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-02-28T00:00:00+00:00'
+[2024-02-29T17:13:24.738+0000] {gcs.py:98} INFO - Sensor checks existence of : stock_market_us, row/Row-Data-US-Stock-Market-2020-to-2024.csv
+[2024-02-29T17:13:24.750+0000] {connection.py:234} WARNING - Connection schemes (type: google_cloud_platform) shall not contain '_' according to RFC3986.
+[2024-02-29T17:13:24.756+0000] {base.py:83} INFO - Using connection ID 'gcp_conn_id' for task execution.
+[2024-02-29T17:13:25.359+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/google/cloud/sensors/gcs.py", line 112, in execute
+    super().execute(context)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/sensors/base.py", line 265, in execute
+    raise e
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/sensors/base.py", line 247, in execute
+    poke_return = self.poke(context)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/google/cloud/sensors/gcs.py", line 107, in poke
+    return hook.exists(self.bucket, self.object, self.retry)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/google/cloud/hooks/gcs.py", line 585, in exists
+    return blob.exists(retry=retry)
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/cloud/storage/blob.py", line 702, in exists
+    client._get_resource(
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/cloud/storage/client.py", line 387, in _get_resource
+    return self._connection.api_request(
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/cloud/storage/_http.py", line 72, in api_request
+    return call()
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/api_core/retry.py", line 372, in retry_wrapped_func
+    return retry_target(
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/api_core/retry.py", line 207, in retry_target
+    result = target()
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/cloud/_http/__init__.py", line 494, in api_request
+    raise exceptions.from_http_response(response)
+google.api_core.exceptions.Forbidden: 403 GET https://storage.googleapis.com/storage/v1/b/stock_market_us/o/row%2FRow-Data-US-Stock-Market-2020-to-2024.csv?fields=name&prettyPrint=false: storage@r2de-workshop-369208.iam.gserviceaccount.com does not have storage.objects.get access to the Google Cloud Storage object. Permission 'storage.objects.get' denied on resource (or it may not exist).
+[2024-02-29T17:13:25.373+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=gcs_snowflake_etl, task_id=gcs_object_exists, execution_date=20240228T000000, start_date=20240229T171324, end_date=20240229T171325
+[2024-02-29T17:13:25.392+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 280 for task gcs_object_exists (403 GET https://storage.googleapis.com/storage/v1/b/stock_market_us/o/row%2FRow-Data-US-Stock-Market-2020-to-2024.csv?fields=name&prettyPrint=false: storage@r2de-workshop-369208.iam.gserviceaccount.com does not have storage.objects.get access to the Google Cloud Storage object. Permission 'storage.objects.get' denied on resource (or it may not exist).; 67)
+[2024-02-29T17:13:25.427+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-02-29T17:13:25.496+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-02-29T18:19:51.333+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gcs_snowflake_etl.gcs_object_exists scheduled__2024-02-28T00:00:00+00:00 [queued]>
+[2024-02-29T18:19:51.348+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gcs_snowflake_etl.gcs_object_exists scheduled__2024-02-28T00:00:00+00:00 [queued]>
+[2024-02-29T18:19:51.348+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2024-02-29T18:19:51.376+0000] {taskinstance.py:2191} INFO - Executing <Task(GCSObjectExistenceSensor): gcs_object_exists> on 2024-02-28 00:00:00+00:00
+[2024-02-29T18:19:51.383+0000] {standard_task_runner.py:60} INFO - Started process 144 to run task
+[2024-02-29T18:19:51.389+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'gcs_snowflake_etl', 'gcs_object_exists', 'scheduled__2024-02-28T00:00:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/GCS_to_Snowflake_DAG.py', '--cfg-path', '/tmp/tmpwyncge8e']
+[2024-02-29T18:19:51.395+0000] {standard_task_runner.py:88} INFO - Job 4: Subtask gcs_object_exists
+[2024-02-29T18:19:51.479+0000] {task_command.py:423} INFO - Running <TaskInstance: gcs_snowflake_etl.gcs_object_exists scheduled__2024-02-28T00:00:00+00:00 [running]> on host 7ac0abcc07bf
+[2024-02-29T18:19:51.596+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='stellar' AIRFLOW_CTX_DAG_ID='gcs_snowflake_etl' AIRFLOW_CTX_TASK_ID='gcs_object_exists' AIRFLOW_CTX_EXECUTION_DATE='2024-02-28T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-02-28T00:00:00+00:00'
+[2024-02-29T18:19:51.598+0000] {gcs.py:98} INFO - Sensor checks existence of : stock_market_us, row/Row-Data-US-Stock-Market-2020-to-2024.csv
+[2024-02-29T18:19:51.611+0000] {connection.py:234} WARNING - Connection schemes (type: google_cloud_platform) shall not contain '_' according to RFC3986.
+[2024-02-29T18:19:51.613+0000] {base.py:83} INFO - Using connection ID 'gcp_conn_id' for task execution.
+[2024-02-29T18:19:55.612+0000] {base.py:295} INFO - Success criteria met. Exiting.
+[2024-02-29T18:19:55.627+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=gcs_snowflake_etl, task_id=gcs_object_exists, execution_date=20240228T000000, start_date=20240229T181951, end_date=20240229T181955
+[2024-02-29T18:19:55.708+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2024-02-29T18:19:55.767+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-02-29T19:25:05.887+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gcs_snowflake_etl.gcs_object_exists scheduled__2024-02-28T00:00:00+00:00 [queued]>
+[2024-02-29T19:25:05.900+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gcs_snowflake_etl.gcs_object_exists scheduled__2024-02-28T00:00:00+00:00 [queued]>
+[2024-02-29T19:25:05.901+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2024-02-29T19:25:05.925+0000] {taskinstance.py:2191} INFO - Executing <Task(GCSObjectExistenceSensor): gcs_object_exists> on 2024-02-28 00:00:00+00:00
+[2024-02-29T19:25:05.936+0000] {standard_task_runner.py:60} INFO - Started process 72 to run task
+[2024-02-29T19:25:05.943+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'gcs_snowflake_etl', 'gcs_object_exists', 'scheduled__2024-02-28T00:00:00+00:00', '--job-id', '5', '--raw', '--subdir', 'DAGS_FOLDER/GCS_to_Snowflake_DAG.py', '--cfg-path', '/tmp/tmppoo198kz']
+[2024-02-29T19:25:05.948+0000] {standard_task_runner.py:88} INFO - Job 5: Subtask gcs_object_exists
+[2024-02-29T19:25:06.046+0000] {task_command.py:423} INFO - Running <TaskInstance: gcs_snowflake_etl.gcs_object_exists scheduled__2024-02-28T00:00:00+00:00 [running]> on host 14357164fa05
+[2024-02-29T19:25:06.155+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='stellar' AIRFLOW_CTX_DAG_ID='gcs_snowflake_etl' AIRFLOW_CTX_TASK_ID='gcs_object_exists' AIRFLOW_CTX_EXECUTION_DATE='2024-02-28T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-02-28T00:00:00+00:00'
+[2024-02-29T19:25:06.158+0000] {gcs.py:98} INFO - Sensor checks existence of : stock_market_us, row/Row-Data-US-Stock-Market-2020-to-2024.csv
+[2024-02-29T19:25:06.172+0000] {connection.py:234} WARNING - Connection schemes (type: google_cloud_platform) shall not contain '_' according to RFC3986.
+[2024-02-29T19:25:06.181+0000] {base.py:83} INFO - Using connection ID 'gcp_conn_id' for task execution.
+[2024-02-29T19:25:08.474+0000] {base.py:295} INFO - Success criteria met. Exiting.
+[2024-02-29T19:25:08.487+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=gcs_snowflake_etl, task_id=gcs_object_exists, execution_date=20240228T000000, start_date=20240229T192505, end_date=20240229T192508
+[2024-02-29T19:25:08.530+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2024-02-29T19:25:08.598+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-02-29T19:29:53.701+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gcs_snowflake_etl.gcs_object_exists scheduled__2024-02-28T00:00:00+00:00 [queued]>
+[2024-02-29T19:29:53.718+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gcs_snowflake_etl.gcs_object_exists scheduled__2024-02-28T00:00:00+00:00 [queued]>
+[2024-02-29T19:29:53.718+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2024-02-29T19:29:53.905+0000] {taskinstance.py:2191} INFO - Executing <Task(GCSObjectExistenceSensor): gcs_object_exists> on 2024-02-28 00:00:00+00:00
+[2024-02-29T19:29:53.912+0000] {standard_task_runner.py:60} INFO - Started process 95 to run task
+[2024-02-29T19:29:53.919+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'gcs_snowflake_etl', 'gcs_object_exists', 'scheduled__2024-02-28T00:00:00+00:00', '--job-id', '13', '--raw', '--subdir', 'DAGS_FOLDER/GCS_to_Snowflake_DAG.py', '--cfg-path', '/tmp/tmp_jrv6w1d']
+[2024-02-29T19:29:53.923+0000] {standard_task_runner.py:88} INFO - Job 13: Subtask gcs_object_exists
+[2024-02-29T19:29:54.052+0000] {task_command.py:423} INFO - Running <TaskInstance: gcs_snowflake_etl.gcs_object_exists scheduled__2024-02-28T00:00:00+00:00 [running]> on host 14357164fa05
+[2024-02-29T19:29:54.293+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='stellar' AIRFLOW_CTX_DAG_ID='gcs_snowflake_etl' AIRFLOW_CTX_TASK_ID='gcs_object_exists' AIRFLOW_CTX_EXECUTION_DATE='2024-02-28T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-02-28T00:00:00+00:00'
+[2024-02-29T19:29:54.296+0000] {gcs.py:98} INFO - Sensor checks existence of : stock_market_us, row/Row-Data-US-Stock-Market-2020-to-2024.csv
+[2024-02-29T19:29:54.315+0000] {connection.py:234} WARNING - Connection schemes (type: google_cloud_platform) shall not contain '_' according to RFC3986.
+[2024-02-29T19:29:54.328+0000] {base.py:83} INFO - Using connection ID 'gcp_conn_id' for task execution.
+[2024-02-29T19:29:58.379+0000] {base.py:295} INFO - Success criteria met. Exiting.
+[2024-02-29T19:29:58.394+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=gcs_snowflake_etl, task_id=gcs_object_exists, execution_date=20240228T000000, start_date=20240229T192953, end_date=20240229T192958
+[2024-02-29T19:29:58.430+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2024-02-29T19:29:58.499+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-02-29T20:21:07.132+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gcs_snowflake_etl.gcs_object_exists scheduled__2024-02-28T00:00:00+00:00 [queued]>
+[2024-02-29T20:21:07.155+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gcs_snowflake_etl.gcs_object_exists scheduled__2024-02-28T00:00:00+00:00 [queued]>
+[2024-02-29T20:21:07.157+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2024-02-29T20:21:07.188+0000] {taskinstance.py:2191} INFO - Executing <Task(GCSObjectExistenceSensor): gcs_object_exists> on 2024-02-28 00:00:00+00:00
+[2024-02-29T20:21:07.199+0000] {standard_task_runner.py:60} INFO - Started process 208 to run task
+[2024-02-29T20:21:07.207+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'gcs_snowflake_etl', 'gcs_object_exists', 'scheduled__2024-02-28T00:00:00+00:00', '--job-id', '47', '--raw', '--subdir', 'DAGS_FOLDER/GCS_to_Snowflake_DAG.py', '--cfg-path', '/tmp/tmp5_q_84s5']
+[2024-02-29T20:21:07.216+0000] {standard_task_runner.py:88} INFO - Job 47: Subtask gcs_object_exists
+[2024-02-29T20:21:07.315+0000] {task_command.py:423} INFO - Running <TaskInstance: gcs_snowflake_etl.gcs_object_exists scheduled__2024-02-28T00:00:00+00:00 [running]> on host 14357164fa05
+[2024-02-29T20:21:07.473+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='stellar' AIRFLOW_CTX_DAG_ID='gcs_snowflake_etl' AIRFLOW_CTX_TASK_ID='gcs_object_exists' AIRFLOW_CTX_EXECUTION_DATE='2024-02-28T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-02-28T00:00:00+00:00'
+[2024-02-29T20:21:07.476+0000] {gcs.py:98} INFO - Sensor checks existence of : stock_market_us, row/Row-Data-US-Stock-Market-2020-to-2024.csv
+[2024-02-29T20:21:07.493+0000] {connection.py:234} WARNING - Connection schemes (type: google_cloud_platform) shall not contain '_' according to RFC3986.
+[2024-02-29T20:21:07.504+0000] {base.py:83} INFO - Using connection ID 'gcp_conn_id' for task execution.
+[2024-02-29T20:21:09.787+0000] {base.py:295} INFO - Success criteria met. Exiting.
+[2024-02-29T20:21:09.834+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=gcs_snowflake_etl, task_id=gcs_object_exists, execution_date=20240228T000000, start_date=20240229T202107, end_date=20240229T202109
+[2024-02-29T20:21:09.961+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2024-02-29T20:21:10.053+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

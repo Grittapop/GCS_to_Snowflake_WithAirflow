@@ -1,0 +1,50 @@
+[2024-02-29T19:39:52.453+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gcs_snowflake_etl.load_data_into_the_table scheduled__2024-02-28T00:00:00+00:00 [queued]>
+[2024-02-29T19:39:52.464+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gcs_snowflake_etl.load_data_into_the_table scheduled__2024-02-28T00:00:00+00:00 [queued]>
+[2024-02-29T19:39:52.465+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2024-02-29T19:39:52.484+0000] {taskinstance.py:2191} INFO - Executing <Task(SnowflakeOperator): load_data_into_the_table> on 2024-02-28 00:00:00+00:00
+[2024-02-29T19:39:52.491+0000] {standard_task_runner.py:60} INFO - Started process 78 to run task
+[2024-02-29T19:39:52.496+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'gcs_snowflake_etl', 'load_data_into_the_table', 'scheduled__2024-02-28T00:00:00+00:00', '--job-id', '37', '--raw', '--subdir', 'DAGS_FOLDER/GCS_to_Snowflake_DAG.py', '--cfg-path', '/tmp/tmpizi2sn4l']
+[2024-02-29T19:39:52.500+0000] {standard_task_runner.py:88} INFO - Job 37: Subtask load_data_into_the_table
+[2024-02-29T19:39:52.569+0000] {task_command.py:423} INFO - Running <TaskInstance: gcs_snowflake_etl.load_data_into_the_table scheduled__2024-02-28T00:00:00+00:00 [running]> on host 14357164fa05
+[2024-02-29T19:39:52.675+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='stellar' AIRFLOW_CTX_DAG_ID='gcs_snowflake_etl' AIRFLOW_CTX_TASK_ID='load_data_into_the_table' AIRFLOW_CTX_EXECUTION_DATE='2024-02-28T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-02-28T00:00:00+00:00'
+[2024-02-29T19:39:52.677+0000] {sql.py:276} INFO - Executing: 
+                COPY INTO US_Stock_Market_2020_To_2024 from @GCS_Stage file_format=csv_format;
+
+        
+[2024-02-29T19:39:52.692+0000] {base.py:83} INFO - Using connection ID 'conn_id_snowflake' for task execution.
+[2024-02-29T19:39:52.705+0000] {base.py:83} INFO - Using connection ID 'conn_id_snowflake' for task execution.
+[2024-02-29T19:39:52.706+0000] {connection.py:370} INFO - Snowflake Connector for Python Version: 3.6.0, Python Version: 3.8.18, Platform: Linux-5.15.133.1-microsoft-standard-WSL2-x86_64-with-glibc2.34
+[2024-02-29T19:39:52.708+0000] {connection.py:1171} INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2024-02-29T19:39:53.190+0000] {cursor.py:1028} INFO - query: [ALTER SESSION SET autocommit=False]
+[2024-02-29T19:39:53.291+0000] {cursor.py:1041} INFO - query execution done
+[2024-02-29T19:39:53.295+0000] {cursor.py:1205} INFO - Number of results in first chunk: 1
+[2024-02-29T19:39:53.298+0000] {sql.py:450} INFO - Running statement: COPY INTO US_Stock_Market_2020_To_2024 from @GCS_Stage file_format=csv_format;, parameters: None
+[2024-02-29T19:39:53.301+0000] {cursor.py:1028} INFO - query: [COPY INTO US_Stock_Market_2020_To_2024 from @GCS_Stage file_format=csv_format;]
+[2024-02-29T19:39:53.414+0000] {cursor.py:1041} INFO - query execution done
+[2024-02-29T19:39:53.443+0000] {connection.py:718} INFO - closed
+[2024-02-29T19:39:53.505+0000] {connection.py:724} INFO - No async queries seem to be running, deleting session
+[2024-02-29T19:39:53.573+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/common/sql/operators/sql.py", line 282, in execute
+    output = hook.run(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/snowflake/hooks/snowflake.py", line 388, in run
+    self._run_command(cur, sql_statement, parameters)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/common/sql/hooks/sql.py", line 455, in _run_command
+    cur.execute(sql_statement)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/cursor.py", line 1132, in execute
+    Error.errorhandler_wrapper(self.connection, self, error_class, errvalue)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/errors.py", line 290, in errorhandler_wrapper
+    handed_over = Error.hand_to_other_handler(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/errors.py", line 345, in hand_to_other_handler
+    cursor.errorhandler(connection, cursor, error_class, error_value)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/errors.py", line 221, in default_errorhandler
+    raise error_class(
+snowflake.connector.errors.ProgrammingError: 002003 (02000): 01b2ae5b-3201-024f-0000-000805cea0f9: SQL compilation error:
+Stage 'PROJECT_US_STOCK_MARKET.STOCK_MARKET.GCS_STAGE' does not exist or not authorized.
+[2024-02-29T19:39:53.596+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=gcs_snowflake_etl, task_id=load_data_into_the_table, execution_date=20240228T000000, start_date=20240229T193952, end_date=20240229T193953
+[2024-02-29T19:39:53.623+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 37 for task load_data_into_the_table (002003 (02000): 01b2ae5b-3201-024f-0000-000805cea0f9: SQL compilation error:
+Stage 'PROJECT_US_STOCK_MARKET.STOCK_MARKET.GCS_STAGE' does not exist or not authorized.; 78)
+[2024-02-29T19:39:53.676+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-02-29T19:39:53.714+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

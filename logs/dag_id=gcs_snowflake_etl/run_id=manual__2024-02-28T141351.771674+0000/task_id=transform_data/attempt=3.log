@@ -1,0 +1,32 @@
+[2024-02-28T14:18:08.760+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gcs_snowflake_etl.transform_data manual__2024-02-28T14:13:51.771674+00:00 [queued]>
+[2024-02-28T14:18:08.778+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gcs_snowflake_etl.transform_data manual__2024-02-28T14:13:51.771674+00:00 [queued]>
+[2024-02-28T14:18:08.779+0000] {taskinstance.py:2170} INFO - Starting attempt 3 of 3
+[2024-02-28T14:18:08.801+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): transform_data> on 2024-02-28 14:13:51.771674+00:00
+[2024-02-28T14:18:08.830+0000] {standard_task_runner.py:60} INFO - Started process 138 to run task
+[2024-02-28T14:18:08.836+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'gcs_snowflake_etl', 'transform_data', 'manual__2024-02-28T14:13:51.771674+00:00', '--job-id', '212', '--raw', '--subdir', 'DAGS_FOLDER/GCS_to_Snowflake_DAG.py', '--cfg-path', '/tmp/tmpeansec6m']
+[2024-02-28T14:18:08.841+0000] {standard_task_runner.py:88} INFO - Job 212: Subtask transform_data
+[2024-02-28T14:18:08.957+0000] {task_command.py:423} INFO - Running <TaskInstance: gcs_snowflake_etl.transform_data manual__2024-02-28T14:13:51.771674+00:00 [running]> on host 1753c686362f
+[2024-02-28T14:18:09.104+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='stellar' AIRFLOW_CTX_DAG_ID='gcs_snowflake_etl' AIRFLOW_CTX_TASK_ID='transform_data' AIRFLOW_CTX_EXECUTION_DATE='2024-02-28T14:13:51.771674+00:00' AIRFLOW_CTX_TRY_NUMBER='3' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-02-28T14:13:51.771674+00:00'
+[2024-02-28T14:18:09.931+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/GCS_to_Snowflake_DAG.py", line 41, in transform_data
+    df.drop(columns=["Unnamed: 0"], inplace=True)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/frame.py", line 5258, in drop
+    return super().drop(
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/generic.py", line 4549, in drop
+    obj = obj._drop_axis(labels, axis, level=level, errors=errors)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/generic.py", line 4591, in _drop_axis
+    new_axis = axis.drop(labels, errors=errors)
+  File "/home/airflow/.local/lib/python3.8/site-packages/pandas/core/indexes/base.py", line 6699, in drop
+    raise KeyError(f"{list(labels[mask])} not found in axis")
+KeyError: "['Unnamed: 0'] not found in axis"
+[2024-02-28T14:18:09.954+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=gcs_snowflake_etl, task_id=transform_data, execution_date=20240228T141351, start_date=20240228T141808, end_date=20240228T141809
+[2024-02-28T14:18:09.981+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 212 for task transform_data ("['Unnamed: 0'] not found in axis"; 138)
+[2024-02-28T14:18:10.014+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-02-28T14:18:10.057+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

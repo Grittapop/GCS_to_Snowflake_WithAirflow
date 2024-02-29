@@ -1,0 +1,359 @@
+[2024-02-29T17:26:21.521+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gcs_snowflake_etl.create_snowflake_database scheduled__2024-02-28T00:00:00+00:00 [queued]>
+[2024-02-29T17:26:21.535+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gcs_snowflake_etl.create_snowflake_database scheduled__2024-02-28T00:00:00+00:00 [queued]>
+[2024-02-29T17:26:21.536+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2024-02-29T17:26:21.559+0000] {taskinstance.py:2191} INFO - Executing <Task(SnowflakeOperator): create_snowflake_database> on 2024-02-28 00:00:00+00:00
+[2024-02-29T17:26:21.569+0000] {standard_task_runner.py:60} INFO - Started process 261 to run task
+[2024-02-29T17:26:21.575+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'gcs_snowflake_etl', 'create_snowflake_database', 'scheduled__2024-02-28T00:00:00+00:00', '--job-id', '288', '--raw', '--subdir', 'DAGS_FOLDER/GCS_to_Snowflake_DAG.py', '--cfg-path', '/tmp/tmp4oavppo7']
+[2024-02-29T17:26:21.581+0000] {standard_task_runner.py:88} INFO - Job 288: Subtask create_snowflake_database
+[2024-02-29T17:26:21.714+0000] {task_command.py:423} INFO - Running <TaskInstance: gcs_snowflake_etl.create_snowflake_database scheduled__2024-02-28T00:00:00+00:00 [running]> on host 1753c686362f
+[2024-02-29T17:26:21.833+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='stellar' AIRFLOW_CTX_DAG_ID='gcs_snowflake_etl' AIRFLOW_CTX_TASK_ID='create_snowflake_database' AIRFLOW_CTX_EXECUTION_DATE='2024-02-28T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-02-28T00:00:00+00:00'
+[2024-02-29T17:26:21.835+0000] {sql.py:276} INFO - Executing: 
+                    CREATE DATABASE IF NOT EXISTS Project_US_Stock_Market ;
+            
+[2024-02-29T17:26:21.849+0000] {base.py:83} INFO - Using connection ID 'conn_id_snowflake' for task execution.
+[2024-02-29T17:26:21.864+0000] {base.py:83} INFO - Using connection ID 'conn_id_snowflake' for task execution.
+[2024-02-29T17:26:21.865+0000] {connection.py:370} INFO - Snowflake Connector for Python Version: 3.6.0, Python Version: 3.8.18, Platform: Linux-5.15.133.1-microsoft-standard-WSL2-x86_64-with-glibc2.34
+[2024-02-29T17:26:21.867+0000] {connection.py:1171} INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2024-02-29T17:26:23.414+0000] {connection.py:547} WARNING - Certificate did not match expected hostname: yc70530.europe-west4.snowflakecomputing.com. Certificate: {'subject': ((('commonName', '*.prod3.us-west-2.snowflakecomputing.com'),),), 'subjectAltName': [('DNS', '*.prod3.us-west-2.snowflakecomputing.com'), ('DNS', '*.us-west-2.snowflakecomputing.com'), ('DNS', '*.global.snowflakecomputing.com'), ('DNS', '*.snowflakecomputing.com'), ('DNS', '*.prod3.us-west-2.aws.snowflakecomputing.com')]}
+[2024-02-29T17:26:23.416+0000] {connectionpool.py:824} WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(CertificateError("hostname 'yc70530.europe-west4.snowflakecomputing.com' doesn't match either of '*.prod3.us-west-2.snowflakecomputing.com', '*.us-west-2.snowflakecomputing.com', '*.global.snowflakecomputing.com', '*.snowflakecomputing.com', '*.prod3.us-west-2.aws.snowflakecomputing.com'"))': /session/v1/login-request?request_id=66326f15-a4cf-47f6-b60b-fe0257c0f1ea&databaseName=Project_US_Stock_Market&schemaName=Stock_Market&warehouse=COMPUTE_WH&roleName=&request_guid=e9f1c70e-cc16-467d-81d2-ecf29b4ca467
+[2024-02-29T17:26:24.190+0000] {connection.py:547} WARNING - Certificate did not match expected hostname: yc70530.europe-west4.snowflakecomputing.com. Certificate: {'subject': ((('commonName', '*.prod3.us-west-2.snowflakecomputing.com'),),), 'subjectAltName': [('DNS', '*.prod3.us-west-2.snowflakecomputing.com'), ('DNS', '*.us-west-2.snowflakecomputing.com'), ('DNS', '*.global.snowflakecomputing.com'), ('DNS', '*.snowflakecomputing.com'), ('DNS', '*.prod3.us-west-2.aws.snowflakecomputing.com')]}
+[2024-02-29T17:26:24.206+0000] {network.py:1024} ERROR - Failed to get the response. Hanging? method: post, url: https://YC70530.europe-west4.snowflakecomputing.com:443/session/v1/login-request?request_id=66326f15-a4cf-47f6-b60b-fe0257c0f1ea&databaseName=Project_US_Stock_Market&schemaName=Stock_Market&warehouse=COMPUTE_WH&roleName=&request_guid=e9f1c70e-cc16-467d-81d2-ecf29b4ca467, headers:{'Content-Type': 'application/json', 'accept': 'application/snowflake', 'User-Agent': 'PythonConnector/3.6.0 (Linux-5.15.133.1-microsoft-standard-WSL2-x86_64-with-glibc2.34) CPython/3.8.18', 'Content-Encoding': 'gzip'}, data: {"data": {"CLIENT_APP_ID": "PythonConnector", "CLIENT_APP_VERSION": "3.6.0", "SVN_REVISION": null, "ACCOUNT_NAME": "YC70530", "LOGIN_NAME": "Grittapop", "CLIENT_ENVIRONMENT": {"APPLICATION": "AIRFLOW", "OS": "Linux", "OS_VERSION": "Linux-5.15.133.1-microsoft-standard-WSL2-x86_64-with-glibc2.34", "PYTHON_VERSION": "3.8.18", "PYTHON_RUNTIME": "CPython", "PYTHON_COMPILER": "GCC 12.2.0", "OCSP_MODE": "FAIL_OPEN", "TRACING": 20, "LOGIN_TIMEOUT": null, "NETWORK_TIMEOUT": null, "SOCKET_TIMEOUT": null}, "PASSWORD": "**** "SESSION_PARAMETERS": {"CLIENT_PREFETCH_THREADS": 4}}}
+[2024-02-29T17:26:25.999+0000] {connection.py:547} WARNING - Certificate did not match expected hostname: yc70530.europe-west4.snowflakecomputing.com. Certificate: {'subject': ((('commonName', '*.prod3.us-west-2.snowflakecomputing.com'),),), 'subjectAltName': [('DNS', '*.prod3.us-west-2.snowflakecomputing.com'), ('DNS', '*.us-west-2.snowflakecomputing.com'), ('DNS', '*.global.snowflakecomputing.com'), ('DNS', '*.snowflakecomputing.com'), ('DNS', '*.prod3.us-west-2.aws.snowflakecomputing.com')]}
+[2024-02-29T17:26:26.001+0000] {connectionpool.py:824} WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(CertificateError("hostname 'yc70530.europe-west4.snowflakecomputing.com' doesn't match either of '*.prod3.us-west-2.snowflakecomputing.com', '*.us-west-2.snowflakecomputing.com', '*.global.snowflakecomputing.com', '*.snowflakecomputing.com', '*.prod3.us-west-2.aws.snowflakecomputing.com'"))': /session/v1/login-request?request_id=30a69197-c380-42a2-a3a4-f2c4676b036a&databaseName=Project_US_Stock_Market&schemaName=Stock_Market&warehouse=COMPUTE_WH&roleName=&request_guid=d5f3c88b-e219-4f07-b5fe-5a4bf4ce84c5
+[2024-02-29T17:26:26.763+0000] {connection.py:547} WARNING - Certificate did not match expected hostname: yc70530.europe-west4.snowflakecomputing.com. Certificate: {'subject': ((('commonName', '*.prod3.us-west-2.snowflakecomputing.com'),),), 'subjectAltName': [('DNS', '*.prod3.us-west-2.snowflakecomputing.com'), ('DNS', '*.us-west-2.snowflakecomputing.com'), ('DNS', '*.global.snowflakecomputing.com'), ('DNS', '*.snowflakecomputing.com'), ('DNS', '*.prod3.us-west-2.aws.snowflakecomputing.com')]}
+[2024-02-29T17:26:26.769+0000] {network.py:1024} ERROR - Failed to get the response. Hanging? method: post, url: https://YC70530.europe-west4.snowflakecomputing.com:443/session/v1/login-request?request_id=30a69197-c380-42a2-a3a4-f2c4676b036a&databaseName=Project_US_Stock_Market&schemaName=Stock_Market&warehouse=COMPUTE_WH&roleName=&request_guid=d5f3c88b-e219-4f07-b5fe-5a4bf4ce84c5, headers:{'Content-Type': 'application/json', 'accept': 'application/snowflake', 'User-Agent': 'PythonConnector/3.6.0 (Linux-5.15.133.1-microsoft-standard-WSL2-x86_64-with-glibc2.34) CPython/3.8.18', 'Content-Encoding': 'gzip'}, data: {"data": {"CLIENT_APP_ID": "PythonConnector", "CLIENT_APP_VERSION": "3.6.0", "SVN_REVISION": null, "ACCOUNT_NAME": "YC70530", "LOGIN_NAME": "Grittapop", "CLIENT_ENVIRONMENT": {"APPLICATION": "AIRFLOW", "OS": "Linux", "OS_VERSION": "Linux-5.15.133.1-microsoft-standard-WSL2-x86_64-with-glibc2.34", "PYTHON_VERSION": "3.8.18", "PYTHON_RUNTIME": "CPython", "PYTHON_COMPILER": "GCC 12.2.0", "OCSP_MODE": "FAIL_OPEN", "TRACING": 20, "LOGIN_TIMEOUT": null, "NETWORK_TIMEOUT": null, "SOCKET_TIMEOUT": null}, "PASSWORD": "**** "SESSION_PARAMETERS": {"CLIENT_PREFETCH_THREADS": 4}}}
+[2024-02-29T17:26:26.775+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/connection.py", line 1305, in _authenticate
+    auth.authenticate(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/auth/_auth.py", line 250, in authenticate
+    ret = self._rest._post_request(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/network.py", line 729, in _post_request
+    ret = self.fetch(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/network.py", line 838, in fetch
+    ret = self._request_exec_wrapper(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/network.py", line 974, in _request_exec_wrapper
+    raise e
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/network.py", line 890, in _request_exec_wrapper
+    self._handle_unknown_error(method, full_url, headers, data, conn)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/network.py", line 1029, in _handle_unknown_error
+    Error.errorhandler_wrapper(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/errors.py", line 290, in errorhandler_wrapper
+    handed_over = Error.hand_to_other_handler(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/errors.py", line 348, in hand_to_other_handler
+    connection.errorhandler(connection, cursor, error_class, error_value)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/errors.py", line 221, in default_errorhandler
+    raise error_class(
+snowflake.connector.errors.OperationalError: 250003: 250003: Failed to get the response. Hanging? method: post, url: https://YC70530.europe-west4.snowflakecomputing.com:443/session/v1/login-request?request_id=66326f15-a4cf-47f6-b60b-fe0257c0f1ea&databaseName=Project_US_Stock_Market&schemaName=Stock_Market&warehouse=COMPUTE_WH&roleName=&request_guid=e9f1c70e-cc16-467d-81d2-ecf29b4ca467
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/common/sql/operators/sql.py", line 282, in execute
+    output = hook.run(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/snowflake/hooks/snowflake.py", line 382, in run
+    with closing(self.get_conn()) as conn:
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/snowflake/hooks/snowflake.py", line 276, in get_conn
+    conn = connector.connect(**conn_config)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/__init__.py", line 54, in Connect
+    return SnowflakeConnection(**kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/connection.py", line 413, in __init__
+    self.connect(**kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/connection.py", line 703, in connect
+    self.__open_connection()
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/connection.py", line 1006, in __open_connection
+    self.authenticate_with_retry(self.auth_class)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/connection.py", line 1277, in authenticate_with_retry
+    self._authenticate(auth_instance)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/connection.py", line 1349, in _authenticate
+    raise auth_op from e
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/connection.py", line 1326, in _authenticate
+    auth_instance.handle_timeout(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/auth/by_plugin.py", line 212, in handle_timeout
+    raise error
+snowflake.connector.errors.OperationalError: 250001: 250001: Could not connect to Snowflake backend after 2 attempt(s).Aborting
+[2024-02-29T17:26:26.792+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=gcs_snowflake_etl, task_id=create_snowflake_database, execution_date=20240228T000000, start_date=20240229T172621, end_date=20240229T172626
+[2024-02-29T17:26:26.814+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 288 for task create_snowflake_database (250001: 250001: Could not connect to Snowflake backend after 2 attempt(s).Aborting; 261)
+[2024-02-29T17:26:26.866+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-02-29T17:26:26.907+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-02-29T18:20:10.155+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gcs_snowflake_etl.create_snowflake_database scheduled__2024-02-28T00:00:00+00:00 [queued]>
+[2024-02-29T18:20:10.170+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gcs_snowflake_etl.create_snowflake_database scheduled__2024-02-28T00:00:00+00:00 [queued]>
+[2024-02-29T18:20:10.170+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2024-02-29T18:20:10.195+0000] {taskinstance.py:2191} INFO - Executing <Task(SnowflakeOperator): create_snowflake_database> on 2024-02-28 00:00:00+00:00
+[2024-02-29T18:20:10.205+0000] {standard_task_runner.py:60} INFO - Started process 164 to run task
+[2024-02-29T18:20:10.214+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'gcs_snowflake_etl', 'create_snowflake_database', 'scheduled__2024-02-28T00:00:00+00:00', '--job-id', '8', '--raw', '--subdir', 'DAGS_FOLDER/GCS_to_Snowflake_DAG.py', '--cfg-path', '/tmp/tmpo4rb8ml8']
+[2024-02-29T18:20:10.219+0000] {standard_task_runner.py:88} INFO - Job 8: Subtask create_snowflake_database
+[2024-02-29T18:20:10.308+0000] {task_command.py:423} INFO - Running <TaskInstance: gcs_snowflake_etl.create_snowflake_database scheduled__2024-02-28T00:00:00+00:00 [running]> on host 7ac0abcc07bf
+[2024-02-29T18:20:10.434+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='stellar' AIRFLOW_CTX_DAG_ID='gcs_snowflake_etl' AIRFLOW_CTX_TASK_ID='create_snowflake_database' AIRFLOW_CTX_EXECUTION_DATE='2024-02-28T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-02-28T00:00:00+00:00'
+[2024-02-29T18:20:10.436+0000] {sql.py:276} INFO - Executing: 
+                    CREATE DATABASE IF NOT EXISTS Project_US_Stock_Market ;
+            
+[2024-02-29T18:20:10.455+0000] {base.py:83} INFO - Using connection ID 'conn_id_snowflake' for task execution.
+[2024-02-29T18:20:10.471+0000] {base.py:83} INFO - Using connection ID 'conn_id_snowflake' for task execution.
+[2024-02-29T18:20:10.472+0000] {connection.py:370} INFO - Snowflake Connector for Python Version: 3.6.0, Python Version: 3.8.18, Platform: Linux-5.15.133.1-microsoft-standard-WSL2-x86_64-with-glibc2.34
+[2024-02-29T18:20:10.475+0000] {connection.py:1171} INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2024-02-29T18:20:11.300+0000] {connection.py:547} WARNING - Certificate did not match expected hostname: qj22866.europe-west2.snowflakecomputing.com. Certificate: {'subject': ((('commonName', '*.prod3.us-west-2.snowflakecomputing.com'),),), 'subjectAltName': [('DNS', '*.prod3.us-west-2.snowflakecomputing.com'), ('DNS', '*.us-west-2.snowflakecomputing.com'), ('DNS', '*.global.snowflakecomputing.com'), ('DNS', '*.snowflakecomputing.com'), ('DNS', '*.prod3.us-west-2.aws.snowflakecomputing.com')]}
+[2024-02-29T18:20:11.301+0000] {connectionpool.py:824} WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(CertificateError("hostname 'qj22866.europe-west2.snowflakecomputing.com' doesn't match either of '*.prod3.us-west-2.snowflakecomputing.com', '*.us-west-2.snowflakecomputing.com', '*.global.snowflakecomputing.com', '*.snowflakecomputing.com', '*.prod3.us-west-2.aws.snowflakecomputing.com'"))': /session/v1/login-request?request_id=fb4c25d9-d4a8-4e37-b93a-b7af7cd16000&databaseName=Project_US_Stock_Market&schemaName=Stock_Market&warehouse=STELLAR&roleName=ACCOUNTADMIN&request_guid=dda96edb-084f-470b-b095-962d733b09f5
+[2024-02-29T18:20:12.034+0000] {connection.py:547} WARNING - Certificate did not match expected hostname: qj22866.europe-west2.snowflakecomputing.com. Certificate: {'subject': ((('commonName', '*.prod3.us-west-2.snowflakecomputing.com'),),), 'subjectAltName': [('DNS', '*.prod3.us-west-2.snowflakecomputing.com'), ('DNS', '*.us-west-2.snowflakecomputing.com'), ('DNS', '*.global.snowflakecomputing.com'), ('DNS', '*.snowflakecomputing.com'), ('DNS', '*.prod3.us-west-2.aws.snowflakecomputing.com')]}
+[2024-02-29T18:20:12.042+0000] {network.py:1024} ERROR - Failed to get the response. Hanging? method: post, url: https://qj22866.europe-west2.snowflakecomputing.com:443/session/v1/login-request?request_id=fb4c25d9-d4a8-4e37-b93a-b7af7cd16000&databaseName=Project_US_Stock_Market&schemaName=Stock_Market&warehouse=STELLAR&roleName=ACCOUNTADMIN&request_guid=dda96edb-084f-470b-b095-962d733b09f5, headers:{'Content-Type': 'application/json', 'accept': 'application/snowflake', 'User-Agent': 'PythonConnector/3.6.0 (Linux-5.15.133.1-microsoft-standard-WSL2-x86_64-with-glibc2.34) CPython/3.8.18', 'Content-Encoding': 'gzip'}, data: {"data": {"CLIENT_APP_ID": "PythonConnector", "CLIENT_APP_VERSION": "3.6.0", "SVN_REVISION": null, "ACCOUNT_NAME": "qj22866", "LOGIN_NAME": "Grittapop", "CLIENT_ENVIRONMENT": {"APPLICATION": "AIRFLOW", "OS": "Linux", "OS_VERSION": "Linux-5.15.133.1-microsoft-standard-WSL2-x86_64-with-glibc2.34", "PYTHON_VERSION": "3.8.18", "PYTHON_RUNTIME": "CPython", "PYTHON_COMPILER": "GCC 12.2.0", "OCSP_MODE": "FAIL_OPEN", "TRACING": 20, "LOGIN_TIMEOUT": null, "NETWORK_TIMEOUT": null, "SOCKET_TIMEOUT": null}, "PASSWORD": "**** "SESSION_PARAMETERS": {"CLIENT_PREFETCH_THREADS": 4}}}
+[2024-02-29T18:20:13.736+0000] {connection.py:547} WARNING - Certificate did not match expected hostname: qj22866.europe-west2.snowflakecomputing.com. Certificate: {'subject': ((('commonName', '*.prod3.us-west-2.snowflakecomputing.com'),),), 'subjectAltName': [('DNS', '*.prod3.us-west-2.snowflakecomputing.com'), ('DNS', '*.us-west-2.snowflakecomputing.com'), ('DNS', '*.global.snowflakecomputing.com'), ('DNS', '*.snowflakecomputing.com'), ('DNS', '*.prod3.us-west-2.aws.snowflakecomputing.com')]}
+[2024-02-29T18:20:13.738+0000] {connectionpool.py:824} WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(CertificateError("hostname 'qj22866.europe-west2.snowflakecomputing.com' doesn't match either of '*.prod3.us-west-2.snowflakecomputing.com', '*.us-west-2.snowflakecomputing.com', '*.global.snowflakecomputing.com', '*.snowflakecomputing.com', '*.prod3.us-west-2.aws.snowflakecomputing.com'"))': /session/v1/login-request?request_id=20d6cf5e-362a-4211-a247-1dfae37ed1c7&databaseName=Project_US_Stock_Market&schemaName=Stock_Market&warehouse=STELLAR&roleName=ACCOUNTADMIN&request_guid=45bf5bb4-dd47-468b-a3b2-c23999e5817d
+[2024-02-29T18:20:14.466+0000] {connection.py:547} WARNING - Certificate did not match expected hostname: qj22866.europe-west2.snowflakecomputing.com. Certificate: {'subject': ((('commonName', '*.prod3.us-west-2.snowflakecomputing.com'),),), 'subjectAltName': [('DNS', '*.prod3.us-west-2.snowflakecomputing.com'), ('DNS', '*.us-west-2.snowflakecomputing.com'), ('DNS', '*.global.snowflakecomputing.com'), ('DNS', '*.snowflakecomputing.com'), ('DNS', '*.prod3.us-west-2.aws.snowflakecomputing.com')]}
+[2024-02-29T18:20:14.472+0000] {network.py:1024} ERROR - Failed to get the response. Hanging? method: post, url: https://qj22866.europe-west2.snowflakecomputing.com:443/session/v1/login-request?request_id=20d6cf5e-362a-4211-a247-1dfae37ed1c7&databaseName=Project_US_Stock_Market&schemaName=Stock_Market&warehouse=STELLAR&roleName=ACCOUNTADMIN&request_guid=45bf5bb4-dd47-468b-a3b2-c23999e5817d, headers:{'Content-Type': 'application/json', 'accept': 'application/snowflake', 'User-Agent': 'PythonConnector/3.6.0 (Linux-5.15.133.1-microsoft-standard-WSL2-x86_64-with-glibc2.34) CPython/3.8.18', 'Content-Encoding': 'gzip'}, data: {"data": {"CLIENT_APP_ID": "PythonConnector", "CLIENT_APP_VERSION": "3.6.0", "SVN_REVISION": null, "ACCOUNT_NAME": "qj22866", "LOGIN_NAME": "Grittapop", "CLIENT_ENVIRONMENT": {"APPLICATION": "AIRFLOW", "OS": "Linux", "OS_VERSION": "Linux-5.15.133.1-microsoft-standard-WSL2-x86_64-with-glibc2.34", "PYTHON_VERSION": "3.8.18", "PYTHON_RUNTIME": "CPython", "PYTHON_COMPILER": "GCC 12.2.0", "OCSP_MODE": "FAIL_OPEN", "TRACING": 20, "LOGIN_TIMEOUT": null, "NETWORK_TIMEOUT": null, "SOCKET_TIMEOUT": null}, "PASSWORD": "**** "SESSION_PARAMETERS": {"CLIENT_PREFETCH_THREADS": 4}}}
+[2024-02-29T18:20:14.478+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/connection.py", line 1305, in _authenticate
+    auth.authenticate(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/auth/_auth.py", line 250, in authenticate
+    ret = self._rest._post_request(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/network.py", line 729, in _post_request
+    ret = self.fetch(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/network.py", line 838, in fetch
+    ret = self._request_exec_wrapper(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/network.py", line 974, in _request_exec_wrapper
+    raise e
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/network.py", line 890, in _request_exec_wrapper
+    self._handle_unknown_error(method, full_url, headers, data, conn)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/network.py", line 1029, in _handle_unknown_error
+    Error.errorhandler_wrapper(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/errors.py", line 290, in errorhandler_wrapper
+    handed_over = Error.hand_to_other_handler(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/errors.py", line 348, in hand_to_other_handler
+    connection.errorhandler(connection, cursor, error_class, error_value)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/errors.py", line 221, in default_errorhandler
+    raise error_class(
+snowflake.connector.errors.OperationalError: 250003: 250003: Failed to get the response. Hanging? method: post, url: https://qj22866.europe-west2.snowflakecomputing.com:443/session/v1/login-request?request_id=fb4c25d9-d4a8-4e37-b93a-b7af7cd16000&databaseName=Project_US_Stock_Market&schemaName=Stock_Market&warehouse=STELLAR&roleName=ACCOUNTADMIN&request_guid=dda96edb-084f-470b-b095-962d733b09f5
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/common/sql/operators/sql.py", line 282, in execute
+    output = hook.run(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/snowflake/hooks/snowflake.py", line 382, in run
+    with closing(self.get_conn()) as conn:
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/snowflake/hooks/snowflake.py", line 276, in get_conn
+    conn = connector.connect(**conn_config)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/__init__.py", line 54, in Connect
+    return SnowflakeConnection(**kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/connection.py", line 413, in __init__
+    self.connect(**kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/connection.py", line 703, in connect
+    self.__open_connection()
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/connection.py", line 1006, in __open_connection
+    self.authenticate_with_retry(self.auth_class)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/connection.py", line 1277, in authenticate_with_retry
+    self._authenticate(auth_instance)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/connection.py", line 1349, in _authenticate
+    raise auth_op from e
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/connection.py", line 1326, in _authenticate
+    auth_instance.handle_timeout(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/auth/by_plugin.py", line 212, in handle_timeout
+    raise error
+snowflake.connector.errors.OperationalError: 250001: 250001: Could not connect to Snowflake backend after 2 attempt(s).Aborting
+[2024-02-29T18:20:14.493+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=gcs_snowflake_etl, task_id=create_snowflake_database, execution_date=20240228T000000, start_date=20240229T182010, end_date=20240229T182014
+[2024-02-29T18:20:14.548+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 8 for task create_snowflake_database (250001: 250001: Could not connect to Snowflake backend after 2 attempt(s).Aborting; 164)
+[2024-02-29T18:20:14.565+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-02-29T18:20:14.604+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-02-29T19:25:19.986+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gcs_snowflake_etl.create_snowflake_database scheduled__2024-02-28T00:00:00+00:00 [queued]>
+[2024-02-29T19:25:20.000+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gcs_snowflake_etl.create_snowflake_database scheduled__2024-02-28T00:00:00+00:00 [queued]>
+[2024-02-29T19:25:20.001+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2024-02-29T19:25:20.027+0000] {taskinstance.py:2191} INFO - Executing <Task(SnowflakeOperator): create_snowflake_database> on 2024-02-28 00:00:00+00:00
+[2024-02-29T19:25:20.037+0000] {standard_task_runner.py:60} INFO - Started process 89 to run task
+[2024-02-29T19:25:20.042+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'gcs_snowflake_etl', 'create_snowflake_database', 'scheduled__2024-02-28T00:00:00+00:00', '--job-id', '9', '--raw', '--subdir', 'DAGS_FOLDER/GCS_to_Snowflake_DAG.py', '--cfg-path', '/tmp/tmpntv911dj']
+[2024-02-29T19:25:20.047+0000] {standard_task_runner.py:88} INFO - Job 9: Subtask create_snowflake_database
+[2024-02-29T19:25:20.148+0000] {task_command.py:423} INFO - Running <TaskInstance: gcs_snowflake_etl.create_snowflake_database scheduled__2024-02-28T00:00:00+00:00 [running]> on host 14357164fa05
+[2024-02-29T19:25:20.294+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='stellar' AIRFLOW_CTX_DAG_ID='gcs_snowflake_etl' AIRFLOW_CTX_TASK_ID='create_snowflake_database' AIRFLOW_CTX_EXECUTION_DATE='2024-02-28T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-02-28T00:00:00+00:00'
+[2024-02-29T19:25:20.296+0000] {sql.py:276} INFO - Executing: 
+                    CREATE DATABASE IF NOT EXISTS Project_US_Stock_Market ;
+            
+[2024-02-29T19:25:20.314+0000] {base.py:83} INFO - Using connection ID 'conn_id_snowflake' for task execution.
+[2024-02-29T19:25:20.328+0000] {base.py:83} INFO - Using connection ID 'conn_id_snowflake' for task execution.
+[2024-02-29T19:25:20.330+0000] {connection.py:370} INFO - Snowflake Connector for Python Version: 3.6.0, Python Version: 3.8.18, Platform: Linux-5.15.133.1-microsoft-standard-WSL2-x86_64-with-glibc2.34
+[2024-02-29T19:25:20.332+0000] {connection.py:1171} INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2024-02-29T19:25:21.743+0000] {connection.py:547} WARNING - Certificate did not match expected hostname: ta81035.us-east4.snowflakecomputing.com. Certificate: {'subject': ((('commonName', '*.prod3.us-west-2.snowflakecomputing.com'),),), 'subjectAltName': [('DNS', '*.prod3.us-west-2.snowflakecomputing.com'), ('DNS', '*.us-west-2.snowflakecomputing.com'), ('DNS', '*.global.snowflakecomputing.com'), ('DNS', '*.snowflakecomputing.com'), ('DNS', '*.prod3.us-west-2.aws.snowflakecomputing.com')]}
+[2024-02-29T19:25:21.746+0000] {connectionpool.py:824} WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(CertificateError("hostname 'ta81035.us-east4.snowflakecomputing.com' doesn't match either of '*.prod3.us-west-2.snowflakecomputing.com', '*.us-west-2.snowflakecomputing.com', '*.global.snowflakecomputing.com', '*.snowflakecomputing.com', '*.prod3.us-west-2.aws.snowflakecomputing.com'"))': /session/v1/login-request?request_id=f1a58da3-98b6-400c-9512-e7603c0bf500&databaseName=Project_US_Stock_Market&schemaName=Stock_Market&warehouse=COMPUTE_WH&roleName=ACCOUNTADMIN&request_guid=8ea54a70-71b4-407e-b014-c2a4699b1721
+[2024-02-29T19:25:22.468+0000] {connection.py:547} WARNING - Certificate did not match expected hostname: ta81035.us-east4.snowflakecomputing.com. Certificate: {'subject': ((('commonName', '*.prod3.us-west-2.snowflakecomputing.com'),),), 'subjectAltName': [('DNS', '*.prod3.us-west-2.snowflakecomputing.com'), ('DNS', '*.us-west-2.snowflakecomputing.com'), ('DNS', '*.global.snowflakecomputing.com'), ('DNS', '*.snowflakecomputing.com'), ('DNS', '*.prod3.us-west-2.aws.snowflakecomputing.com')]}
+[2024-02-29T19:25:22.475+0000] {network.py:1024} ERROR - Failed to get the response. Hanging? method: post, url: https://ta81035.us-east4.snowflakecomputing.com:443/session/v1/login-request?request_id=f1a58da3-98b6-400c-9512-e7603c0bf500&databaseName=Project_US_Stock_Market&schemaName=Stock_Market&warehouse=COMPUTE_WH&roleName=ACCOUNTADMIN&request_guid=8ea54a70-71b4-407e-b014-c2a4699b1721, headers:{'Content-Type': 'application/json', 'accept': 'application/snowflake', 'User-Agent': 'PythonConnector/3.6.0 (Linux-5.15.133.1-microsoft-standard-WSL2-x86_64-with-glibc2.34) CPython/3.8.18', 'Content-Encoding': 'gzip'}, data: {"data": {"CLIENT_APP_ID": "PythonConnector", "CLIENT_APP_VERSION": "3.6.0", "SVN_REVISION": null, "ACCOUNT_NAME": "ta81035", "LOGIN_NAME": "Grittapop", "CLIENT_ENVIRONMENT": {"APPLICATION": "AIRFLOW", "OS": "Linux", "OS_VERSION": "Linux-5.15.133.1-microsoft-standard-WSL2-x86_64-with-glibc2.34", "PYTHON_VERSION": "3.8.18", "PYTHON_RUNTIME": "CPython", "PYTHON_COMPILER": "GCC 12.2.0", "OCSP_MODE": "FAIL_OPEN", "TRACING": 20, "LOGIN_TIMEOUT": null, "NETWORK_TIMEOUT": null, "SOCKET_TIMEOUT": null}, "PASSWORD": "**** "SESSION_PARAMETERS": {"CLIENT_PREFETCH_THREADS": 4}}}
+[2024-02-29T19:25:24.217+0000] {connection.py:547} WARNING - Certificate did not match expected hostname: ta81035.us-east4.snowflakecomputing.com. Certificate: {'subject': ((('commonName', '*.prod3.us-west-2.snowflakecomputing.com'),),), 'subjectAltName': [('DNS', '*.prod3.us-west-2.snowflakecomputing.com'), ('DNS', '*.us-west-2.snowflakecomputing.com'), ('DNS', '*.global.snowflakecomputing.com'), ('DNS', '*.snowflakecomputing.com'), ('DNS', '*.prod3.us-west-2.aws.snowflakecomputing.com')]}
+[2024-02-29T19:25:24.220+0000] {connectionpool.py:824} WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(CertificateError("hostname 'ta81035.us-east4.snowflakecomputing.com' doesn't match either of '*.prod3.us-west-2.snowflakecomputing.com', '*.us-west-2.snowflakecomputing.com', '*.global.snowflakecomputing.com', '*.snowflakecomputing.com', '*.prod3.us-west-2.aws.snowflakecomputing.com'"))': /session/v1/login-request?request_id=57ac77b6-e697-4188-bb90-d0472f09603f&databaseName=Project_US_Stock_Market&schemaName=Stock_Market&warehouse=COMPUTE_WH&roleName=ACCOUNTADMIN&request_guid=2125f200-72f2-4eb9-a449-f6ad7cbd15fa
+[2024-02-29T19:25:24.923+0000] {connection.py:547} WARNING - Certificate did not match expected hostname: ta81035.us-east4.snowflakecomputing.com. Certificate: {'subject': ((('commonName', '*.prod3.us-west-2.snowflakecomputing.com'),),), 'subjectAltName': [('DNS', '*.prod3.us-west-2.snowflakecomputing.com'), ('DNS', '*.us-west-2.snowflakecomputing.com'), ('DNS', '*.global.snowflakecomputing.com'), ('DNS', '*.snowflakecomputing.com'), ('DNS', '*.prod3.us-west-2.aws.snowflakecomputing.com')]}
+[2024-02-29T19:25:24.928+0000] {network.py:1024} ERROR - Failed to get the response. Hanging? method: post, url: https://ta81035.us-east4.snowflakecomputing.com:443/session/v1/login-request?request_id=57ac77b6-e697-4188-bb90-d0472f09603f&databaseName=Project_US_Stock_Market&schemaName=Stock_Market&warehouse=COMPUTE_WH&roleName=ACCOUNTADMIN&request_guid=2125f200-72f2-4eb9-a449-f6ad7cbd15fa, headers:{'Content-Type': 'application/json', 'accept': 'application/snowflake', 'User-Agent': 'PythonConnector/3.6.0 (Linux-5.15.133.1-microsoft-standard-WSL2-x86_64-with-glibc2.34) CPython/3.8.18', 'Content-Encoding': 'gzip'}, data: {"data": {"CLIENT_APP_ID": "PythonConnector", "CLIENT_APP_VERSION": "3.6.0", "SVN_REVISION": null, "ACCOUNT_NAME": "ta81035", "LOGIN_NAME": "Grittapop", "CLIENT_ENVIRONMENT": {"APPLICATION": "AIRFLOW", "OS": "Linux", "OS_VERSION": "Linux-5.15.133.1-microsoft-standard-WSL2-x86_64-with-glibc2.34", "PYTHON_VERSION": "3.8.18", "PYTHON_RUNTIME": "CPython", "PYTHON_COMPILER": "GCC 12.2.0", "OCSP_MODE": "FAIL_OPEN", "TRACING": 20, "LOGIN_TIMEOUT": null, "NETWORK_TIMEOUT": null, "SOCKET_TIMEOUT": null}, "PASSWORD": "**** "SESSION_PARAMETERS": {"CLIENT_PREFETCH_THREADS": 4}}}
+[2024-02-29T19:25:24.932+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/connection.py", line 1305, in _authenticate
+    auth.authenticate(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/auth/_auth.py", line 250, in authenticate
+    ret = self._rest._post_request(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/network.py", line 729, in _post_request
+    ret = self.fetch(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/network.py", line 838, in fetch
+    ret = self._request_exec_wrapper(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/network.py", line 974, in _request_exec_wrapper
+    raise e
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/network.py", line 890, in _request_exec_wrapper
+    self._handle_unknown_error(method, full_url, headers, data, conn)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/network.py", line 1029, in _handle_unknown_error
+    Error.errorhandler_wrapper(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/errors.py", line 290, in errorhandler_wrapper
+    handed_over = Error.hand_to_other_handler(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/errors.py", line 348, in hand_to_other_handler
+    connection.errorhandler(connection, cursor, error_class, error_value)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/errors.py", line 221, in default_errorhandler
+    raise error_class(
+snowflake.connector.errors.OperationalError: 250003: 250003: Failed to get the response. Hanging? method: post, url: https://ta81035.us-east4.snowflakecomputing.com:443/session/v1/login-request?request_id=f1a58da3-98b6-400c-9512-e7603c0bf500&databaseName=Project_US_Stock_Market&schemaName=Stock_Market&warehouse=COMPUTE_WH&roleName=ACCOUNTADMIN&request_guid=8ea54a70-71b4-407e-b014-c2a4699b1721
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/common/sql/operators/sql.py", line 282, in execute
+    output = hook.run(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/snowflake/hooks/snowflake.py", line 382, in run
+    with closing(self.get_conn()) as conn:
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/snowflake/hooks/snowflake.py", line 276, in get_conn
+    conn = connector.connect(**conn_config)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/__init__.py", line 54, in Connect
+    return SnowflakeConnection(**kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/connection.py", line 413, in __init__
+    self.connect(**kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/connection.py", line 703, in connect
+    self.__open_connection()
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/connection.py", line 1006, in __open_connection
+    self.authenticate_with_retry(self.auth_class)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/connection.py", line 1277, in authenticate_with_retry
+    self._authenticate(auth_instance)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/connection.py", line 1349, in _authenticate
+    raise auth_op from e
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/connection.py", line 1326, in _authenticate
+    auth_instance.handle_timeout(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/auth/by_plugin.py", line 212, in handle_timeout
+    raise error
+snowflake.connector.errors.OperationalError: 250001: 250001: Could not connect to Snowflake backend after 2 attempt(s).Aborting
+[2024-02-29T19:25:24.944+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=gcs_snowflake_etl, task_id=create_snowflake_database, execution_date=20240228T000000, start_date=20240229T192519, end_date=20240229T192524
+[2024-02-29T19:25:24.963+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 9 for task create_snowflake_database (250001: 250001: Could not connect to Snowflake backend after 2 attempt(s).Aborting; 89)
+[2024-02-29T19:25:25.001+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-02-29T19:25:25.039+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-02-29T19:30:08.138+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gcs_snowflake_etl.create_snowflake_database scheduled__2024-02-28T00:00:00+00:00 [queued]>
+[2024-02-29T19:30:08.152+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gcs_snowflake_etl.create_snowflake_database scheduled__2024-02-28T00:00:00+00:00 [queued]>
+[2024-02-29T19:30:08.153+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2024-02-29T19:30:08.172+0000] {taskinstance.py:2191} INFO - Executing <Task(SnowflakeOperator): create_snowflake_database> on 2024-02-28 00:00:00+00:00
+[2024-02-29T19:30:08.180+0000] {standard_task_runner.py:60} INFO - Started process 108 to run task
+[2024-02-29T19:30:08.186+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'gcs_snowflake_etl', 'create_snowflake_database', 'scheduled__2024-02-28T00:00:00+00:00', '--job-id', '18', '--raw', '--subdir', 'DAGS_FOLDER/GCS_to_Snowflake_DAG.py', '--cfg-path', '/tmp/tmpvbphvnpa']
+[2024-02-29T19:30:08.191+0000] {standard_task_runner.py:88} INFO - Job 18: Subtask create_snowflake_database
+[2024-02-29T19:30:08.269+0000] {task_command.py:423} INFO - Running <TaskInstance: gcs_snowflake_etl.create_snowflake_database scheduled__2024-02-28T00:00:00+00:00 [running]> on host 14357164fa05
+[2024-02-29T19:30:08.387+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='stellar' AIRFLOW_CTX_DAG_ID='gcs_snowflake_etl' AIRFLOW_CTX_TASK_ID='create_snowflake_database' AIRFLOW_CTX_EXECUTION_DATE='2024-02-28T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-02-28T00:00:00+00:00'
+[2024-02-29T19:30:08.389+0000] {sql.py:276} INFO - Executing: 
+                    CREATE DATABASE IF NOT EXISTS Project_US_Stock_Market ;
+            
+[2024-02-29T19:30:08.405+0000] {base.py:83} INFO - Using connection ID 'conn_id_snowflake' for task execution.
+[2024-02-29T19:30:08.420+0000] {base.py:83} INFO - Using connection ID 'conn_id_snowflake' for task execution.
+[2024-02-29T19:30:08.421+0000] {connection.py:370} INFO - Snowflake Connector for Python Version: 3.6.0, Python Version: 3.8.18, Platform: Linux-5.15.133.1-microsoft-standard-WSL2-x86_64-with-glibc2.34
+[2024-02-29T19:30:08.423+0000] {connection.py:1171} INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2024-02-29T19:30:08.942+0000] {cursor.py:1028} INFO - query: [ALTER SESSION SET autocommit=False]
+[2024-02-29T19:30:09.051+0000] {cursor.py:1041} INFO - query execution done
+[2024-02-29T19:30:09.054+0000] {cursor.py:1205} INFO - Number of results in first chunk: 1
+[2024-02-29T19:30:09.056+0000] {sql.py:450} INFO - Running statement: CREATE DATABASE IF NOT EXISTS Project_US_Stock_Market ;, parameters: None
+[2024-02-29T19:30:09.059+0000] {cursor.py:1028} INFO - query: [CREATE DATABASE IF NOT EXISTS Project_US_Stock_Market ;]
+[2024-02-29T19:30:09.148+0000] {cursor.py:1041} INFO - query execution done
+[2024-02-29T19:30:09.149+0000] {cursor.py:1205} INFO - Number of results in first chunk: 1
+[2024-02-29T19:30:09.150+0000] {sql.py:459} INFO - Rows affected: 1
+[2024-02-29T19:30:09.151+0000] {snowflake.py:400} INFO - Rows affected: 1
+[2024-02-29T19:30:09.152+0000] {snowflake.py:401} INFO - Snowflake query id: 01b2ae52-3201-024e-0000-000805ce90d5
+[2024-02-29T19:30:09.153+0000] {cursor.py:1028} INFO - query: [COMMIT]
+[2024-02-29T19:30:09.307+0000] {cursor.py:1041} INFO - query execution done
+[2024-02-29T19:30:09.308+0000] {cursor.py:1205} INFO - Number of results in first chunk: 1
+[2024-02-29T19:30:09.309+0000] {connection.py:718} INFO - closed
+[2024-02-29T19:30:09.368+0000] {connection.py:724} INFO - No async queries seem to be running, deleting session
+[2024-02-29T19:30:09.491+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=gcs_snowflake_etl, task_id=create_snowflake_database, execution_date=20240228T000000, start_date=20240229T193008, end_date=20240229T193009
+[2024-02-29T19:30:09.526+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2024-02-29T19:30:09.585+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-02-29T20:21:20.935+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gcs_snowflake_etl.create_snowflake_database scheduled__2024-02-28T00:00:00+00:00 [queued]>
+[2024-02-29T20:21:20.951+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gcs_snowflake_etl.create_snowflake_database scheduled__2024-02-28T00:00:00+00:00 [queued]>
+[2024-02-29T20:21:20.952+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2024-02-29T20:21:20.974+0000] {taskinstance.py:2191} INFO - Executing <Task(SnowflakeOperator): create_snowflake_database> on 2024-02-28 00:00:00+00:00
+[2024-02-29T20:21:20.982+0000] {standard_task_runner.py:60} INFO - Started process 228 to run task
+[2024-02-29T20:21:20.988+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'gcs_snowflake_etl', 'create_snowflake_database', 'scheduled__2024-02-28T00:00:00+00:00', '--job-id', '51', '--raw', '--subdir', 'DAGS_FOLDER/GCS_to_Snowflake_DAG.py', '--cfg-path', '/tmp/tmpxqe75z48']
+[2024-02-29T20:21:20.993+0000] {standard_task_runner.py:88} INFO - Job 51: Subtask create_snowflake_database
+[2024-02-29T20:21:21.077+0000] {task_command.py:423} INFO - Running <TaskInstance: gcs_snowflake_etl.create_snowflake_database scheduled__2024-02-28T00:00:00+00:00 [running]> on host 14357164fa05
+[2024-02-29T20:21:21.193+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='stellar' AIRFLOW_CTX_DAG_ID='gcs_snowflake_etl' AIRFLOW_CTX_TASK_ID='create_snowflake_database' AIRFLOW_CTX_EXECUTION_DATE='2024-02-28T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-02-28T00:00:00+00:00'
+[2024-02-29T20:21:21.195+0000] {sql.py:276} INFO - Executing: 
+                    CREATE DATABASE IF NOT EXISTS Project_US_Stock_Market ;
+            
+[2024-02-29T20:21:21.209+0000] {base.py:83} INFO - Using connection ID 'conn_id_snowflake' for task execution.
+[2024-02-29T20:21:21.224+0000] {base.py:83} INFO - Using connection ID 'conn_id_snowflake' for task execution.
+[2024-02-29T20:21:21.225+0000] {connection.py:370} INFO - Snowflake Connector for Python Version: 3.6.0, Python Version: 3.8.18, Platform: Linux-5.15.133.1-microsoft-standard-WSL2-x86_64-with-glibc2.34
+[2024-02-29T20:21:21.226+0000] {connection.py:1171} INFO - This connection is in OCSP Fail Open Mode. TLS Certificates would be checked for validity and revocation status. Any other Certificate Revocation related exceptions or OCSP Responder failures would be disregarded in favor of connectivity.
+[2024-02-29T20:21:21.227+0000] {connection.py:1181} INFO - THIS CONNECTION IS IN INSECURE MODE. IT MEANS THE CERTIFICATE WILL BE VALIDATED BUT THE CERTIFICATE REVOCATION STATUS WILL NOT BE CHECKED.
+[2024-02-29T20:21:22.004+0000] {ssl_wrap_socket.py:100} INFO - THIS CONNECTION IS IN INSECURE MODE. IT MEANS THE CERTIFICATE WILL BE VALIDATED BUT THE CERTIFICATE REVOCATION STATUS WILL NOT BE CHECKED.
+[2024-02-29T20:21:22.013+0000] {connection.py:547} WARNING - Certificate did not match expected hostname: hi76192.us-central1.snowflakecomputing.com. Certificate: {'subject': ((('commonName', '*.prod3.us-west-2.snowflakecomputing.com'),),), 'subjectAltName': [('DNS', '*.prod3.us-west-2.snowflakecomputing.com'), ('DNS', '*.us-west-2.snowflakecomputing.com'), ('DNS', '*.global.snowflakecomputing.com'), ('DNS', '*.snowflakecomputing.com'), ('DNS', '*.prod3.us-west-2.aws.snowflakecomputing.com')]}
+[2024-02-29T20:21:22.015+0000] {connectionpool.py:824} WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(CertificateError("hostname 'hi76192.us-central1.snowflakecomputing.com' doesn't match either of '*.prod3.us-west-2.snowflakecomputing.com', '*.us-west-2.snowflakecomputing.com', '*.global.snowflakecomputing.com', '*.snowflakecomputing.com', '*.prod3.us-west-2.aws.snowflakecomputing.com'"))': /session/v1/login-request?request_id=2f0c5cac-90f4-40fd-8b1d-b676bf96482d&databaseName=Project_US_Stock_Market&schemaName=Stock_Market&warehouse=COMPUTE_WH&roleName=ACCOUNTADMIN&request_guid=a62d0934-7332-4651-a2f9-b2f8c31f4451
+[2024-02-29T20:21:22.742+0000] {ssl_wrap_socket.py:100} INFO - THIS CONNECTION IS IN INSECURE MODE. IT MEANS THE CERTIFICATE WILL BE VALIDATED BUT THE CERTIFICATE REVOCATION STATUS WILL NOT BE CHECKED.
+[2024-02-29T20:21:22.745+0000] {connection.py:547} WARNING - Certificate did not match expected hostname: hi76192.us-central1.snowflakecomputing.com. Certificate: {'subject': ((('commonName', '*.prod3.us-west-2.snowflakecomputing.com'),),), 'subjectAltName': [('DNS', '*.prod3.us-west-2.snowflakecomputing.com'), ('DNS', '*.us-west-2.snowflakecomputing.com'), ('DNS', '*.global.snowflakecomputing.com'), ('DNS', '*.snowflakecomputing.com'), ('DNS', '*.prod3.us-west-2.aws.snowflakecomputing.com')]}
+[2024-02-29T20:21:22.754+0000] {network.py:1024} ERROR - Failed to get the response. Hanging? method: post, url: https://hi76192.us-central1.snowflakecomputing.com:443/session/v1/login-request?request_id=2f0c5cac-90f4-40fd-8b1d-b676bf96482d&databaseName=Project_US_Stock_Market&schemaName=Stock_Market&warehouse=COMPUTE_WH&roleName=ACCOUNTADMIN&request_guid=a62d0934-7332-4651-a2f9-b2f8c31f4451, headers:{'Content-Type': 'application/json', 'accept': 'application/snowflake', 'User-Agent': 'PythonConnector/3.6.0 (Linux-5.15.133.1-microsoft-standard-WSL2-x86_64-with-glibc2.34) CPython/3.8.18', 'Content-Encoding': 'gzip'}, data: {"data": {"CLIENT_APP_ID": "PythonConnector", "CLIENT_APP_VERSION": "3.6.0", "SVN_REVISION": null, "ACCOUNT_NAME": "hi76192", "LOGIN_NAME": "Grittapop", "CLIENT_ENVIRONMENT": {"APPLICATION": "AIRFLOW", "OS": "Linux", "OS_VERSION": "Linux-5.15.133.1-microsoft-standard-WSL2-x86_64-with-glibc2.34", "PYTHON_VERSION": "3.8.18", "PYTHON_RUNTIME": "CPython", "PYTHON_COMPILER": "GCC 12.2.0", "OCSP_MODE": "INSECURE", "TRACING": 20, "LOGIN_TIMEOUT": null, "NETWORK_TIMEOUT": null, "SOCKET_TIMEOUT": null}, "PASSWORD": "**** "SESSION_PARAMETERS": {"CLIENT_PREFETCH_THREADS": 4}}}
+[2024-02-29T20:21:24.497+0000] {ssl_wrap_socket.py:100} INFO - THIS CONNECTION IS IN INSECURE MODE. IT MEANS THE CERTIFICATE WILL BE VALIDATED BUT THE CERTIFICATE REVOCATION STATUS WILL NOT BE CHECKED.
+[2024-02-29T20:21:24.501+0000] {connection.py:547} WARNING - Certificate did not match expected hostname: hi76192.us-central1.snowflakecomputing.com. Certificate: {'subject': ((('commonName', '*.prod3.us-west-2.snowflakecomputing.com'),),), 'subjectAltName': [('DNS', '*.prod3.us-west-2.snowflakecomputing.com'), ('DNS', '*.us-west-2.snowflakecomputing.com'), ('DNS', '*.global.snowflakecomputing.com'), ('DNS', '*.snowflakecomputing.com'), ('DNS', '*.prod3.us-west-2.aws.snowflakecomputing.com')]}
+[2024-02-29T20:21:24.504+0000] {connectionpool.py:824} WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(CertificateError("hostname 'hi76192.us-central1.snowflakecomputing.com' doesn't match either of '*.prod3.us-west-2.snowflakecomputing.com', '*.us-west-2.snowflakecomputing.com', '*.global.snowflakecomputing.com', '*.snowflakecomputing.com', '*.prod3.us-west-2.aws.snowflakecomputing.com'"))': /session/v1/login-request?request_id=6bf58a5b-dcb2-479e-b110-c762d4152a47&databaseName=Project_US_Stock_Market&schemaName=Stock_Market&warehouse=COMPUTE_WH&roleName=ACCOUNTADMIN&request_guid=2b86d77f-8af1-4833-bf4d-b91579eb0e90
+[2024-02-29T20:21:25.235+0000] {ssl_wrap_socket.py:100} INFO - THIS CONNECTION IS IN INSECURE MODE. IT MEANS THE CERTIFICATE WILL BE VALIDATED BUT THE CERTIFICATE REVOCATION STATUS WILL NOT BE CHECKED.
+[2024-02-29T20:21:25.238+0000] {connection.py:547} WARNING - Certificate did not match expected hostname: hi76192.us-central1.snowflakecomputing.com. Certificate: {'subject': ((('commonName', '*.prod3.us-west-2.snowflakecomputing.com'),),), 'subjectAltName': [('DNS', '*.prod3.us-west-2.snowflakecomputing.com'), ('DNS', '*.us-west-2.snowflakecomputing.com'), ('DNS', '*.global.snowflakecomputing.com'), ('DNS', '*.snowflakecomputing.com'), ('DNS', '*.prod3.us-west-2.aws.snowflakecomputing.com')]}
+[2024-02-29T20:21:25.243+0000] {network.py:1024} ERROR - Failed to get the response. Hanging? method: post, url: https://hi76192.us-central1.snowflakecomputing.com:443/session/v1/login-request?request_id=6bf58a5b-dcb2-479e-b110-c762d4152a47&databaseName=Project_US_Stock_Market&schemaName=Stock_Market&warehouse=COMPUTE_WH&roleName=ACCOUNTADMIN&request_guid=2b86d77f-8af1-4833-bf4d-b91579eb0e90, headers:{'Content-Type': 'application/json', 'accept': 'application/snowflake', 'User-Agent': 'PythonConnector/3.6.0 (Linux-5.15.133.1-microsoft-standard-WSL2-x86_64-with-glibc2.34) CPython/3.8.18', 'Content-Encoding': 'gzip'}, data: {"data": {"CLIENT_APP_ID": "PythonConnector", "CLIENT_APP_VERSION": "3.6.0", "SVN_REVISION": null, "ACCOUNT_NAME": "hi76192", "LOGIN_NAME": "Grittapop", "CLIENT_ENVIRONMENT": {"APPLICATION": "AIRFLOW", "OS": "Linux", "OS_VERSION": "Linux-5.15.133.1-microsoft-standard-WSL2-x86_64-with-glibc2.34", "PYTHON_VERSION": "3.8.18", "PYTHON_RUNTIME": "CPython", "PYTHON_COMPILER": "GCC 12.2.0", "OCSP_MODE": "INSECURE", "TRACING": 20, "LOGIN_TIMEOUT": null, "NETWORK_TIMEOUT": null, "SOCKET_TIMEOUT": null}, "PASSWORD": "**** "SESSION_PARAMETERS": {"CLIENT_PREFETCH_THREADS": 4}}}
+[2024-02-29T20:21:25.249+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/connection.py", line 1305, in _authenticate
+    auth.authenticate(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/auth/_auth.py", line 250, in authenticate
+    ret = self._rest._post_request(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/network.py", line 729, in _post_request
+    ret = self.fetch(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/network.py", line 838, in fetch
+    ret = self._request_exec_wrapper(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/network.py", line 974, in _request_exec_wrapper
+    raise e
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/network.py", line 890, in _request_exec_wrapper
+    self._handle_unknown_error(method, full_url, headers, data, conn)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/network.py", line 1029, in _handle_unknown_error
+    Error.errorhandler_wrapper(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/errors.py", line 290, in errorhandler_wrapper
+    handed_over = Error.hand_to_other_handler(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/errors.py", line 348, in hand_to_other_handler
+    connection.errorhandler(connection, cursor, error_class, error_value)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/errors.py", line 221, in default_errorhandler
+    raise error_class(
+snowflake.connector.errors.OperationalError: 250003: 250003: Failed to get the response. Hanging? method: post, url: https://hi76192.us-central1.snowflakecomputing.com:443/session/v1/login-request?request_id=2f0c5cac-90f4-40fd-8b1d-b676bf96482d&databaseName=Project_US_Stock_Market&schemaName=Stock_Market&warehouse=COMPUTE_WH&roleName=ACCOUNTADMIN&request_guid=a62d0934-7332-4651-a2f9-b2f8c31f4451
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/common/sql/operators/sql.py", line 282, in execute
+    output = hook.run(
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/snowflake/hooks/snowflake.py", line 382, in run
+    with closing(self.get_conn()) as conn:
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/providers/snowflake/hooks/snowflake.py", line 276, in get_conn
+    conn = connector.connect(**conn_config)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/__init__.py", line 54, in Connect
+    return SnowflakeConnection(**kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/connection.py", line 413, in __init__
+    self.connect(**kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/connection.py", line 703, in connect
+    self.__open_connection()
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/connection.py", line 1006, in __open_connection
+    self.authenticate_with_retry(self.auth_class)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/connection.py", line 1277, in authenticate_with_retry
+    self._authenticate(auth_instance)
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/connection.py", line 1349, in _authenticate
+    raise auth_op from e
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/connection.py", line 1326, in _authenticate
+    auth_instance.handle_timeout(
+  File "/home/airflow/.local/lib/python3.8/site-packages/snowflake/connector/auth/by_plugin.py", line 212, in handle_timeout
+    raise error
+snowflake.connector.errors.OperationalError: 250001: 250001: Could not connect to Snowflake backend after 2 attempt(s).Aborting
+[2024-02-29T20:21:25.261+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=gcs_snowflake_etl, task_id=create_snowflake_database, execution_date=20240228T000000, start_date=20240229T202120, end_date=20240229T202125
+[2024-02-29T20:21:25.282+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 51 for task create_snowflake_database (250001: 250001: Could not connect to Snowflake backend after 2 attempt(s).Aborting; 228)
+[2024-02-29T20:21:25.307+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-02-29T20:21:25.352+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

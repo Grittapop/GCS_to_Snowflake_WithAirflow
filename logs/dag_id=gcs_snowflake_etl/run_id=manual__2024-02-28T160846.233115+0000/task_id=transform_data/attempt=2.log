@@ -1,0 +1,28 @@
+[2024-02-28T16:24:03.677+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gcs_snowflake_etl.transform_data manual__2024-02-28T16:08:46.233115+00:00 [queued]>
+[2024-02-28T16:24:03.699+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gcs_snowflake_etl.transform_data manual__2024-02-28T16:08:46.233115+00:00 [queued]>
+[2024-02-28T16:24:03.700+0000] {taskinstance.py:2170} INFO - Starting attempt 2 of 3
+[2024-02-28T16:24:03.774+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): transform_data> on 2024-02-28 16:08:46.233115+00:00
+[2024-02-28T16:24:03.811+0000] {standard_task_runner.py:60} INFO - Started process 64 to run task
+[2024-02-28T16:24:03.821+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'gcs_snowflake_etl', 'transform_data', 'manual__2024-02-28T16:08:46.233115+00:00', '--job-id', '242', '--raw', '--subdir', 'DAGS_FOLDER/GCS_to_Snowflake_DAG.py', '--cfg-path', '/tmp/tmp1j63mhdy']
+[2024-02-28T16:24:03.828+0000] {standard_task_runner.py:88} INFO - Job 242: Subtask transform_data
+[2024-02-28T16:24:03.950+0000] {task_command.py:423} INFO - Running <TaskInstance: gcs_snowflake_etl.transform_data manual__2024-02-28T16:08:46.233115+00:00 [running]> on host 1753c686362f
+[2024-02-28T16:24:04.178+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='stellar' AIRFLOW_CTX_DAG_ID='gcs_snowflake_etl' AIRFLOW_CTX_TASK_ID='transform_data' AIRFLOW_CTX_EXECUTION_DATE='2024-02-28T16:08:46.233115+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-02-28T16:08:46.233115+00:00'
+[2024-02-28T16:24:06.888+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/GCS_to_Snowflake_DAG.py", line 65, in transform_data
+    blob.upload_from_filename(destination_transform_data_file_name)
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/cloud/storage/blob.py", line 2929, in upload_from_filename
+    self._handle_filename_and_upload(
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/cloud/storage/blob.py", line 2797, in _handle_filename_and_upload
+    with open(filename, "rb") as file_obj:
+FileNotFoundError: [Errno 2] No such file or directory: 'transform_data/US-Stock-Market-2020-to-2024-Transform-Data.csv'
+[2024-02-28T16:24:06.914+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=gcs_snowflake_etl, task_id=transform_data, execution_date=20240228T160846, start_date=20240228T162403, end_date=20240228T162406
+[2024-02-28T16:24:06.994+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 242 for task transform_data ([Errno 2] No such file or directory: 'transform_data/US-Stock-Market-2020-to-2024-Transform-Data.csv'; 64)
+[2024-02-28T16:24:07.053+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-02-28T16:24:07.111+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

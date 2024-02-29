@@ -1,0 +1,126 @@
+[2024-02-28T12:24:51.316+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gcs_snowflake_etl.transform_data scheduled__2024-02-27T00:00:00+00:00 [queued]>
+[2024-02-28T12:24:51.331+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gcs_snowflake_etl.transform_data scheduled__2024-02-27T00:00:00+00:00 [queued]>
+[2024-02-28T12:24:51.332+0000] {taskinstance.py:2170} INFO - Starting attempt 5 of 6
+[2024-02-28T12:24:51.352+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): transform_data> on 2024-02-27 00:00:00+00:00
+[2024-02-28T12:24:51.359+0000] {standard_task_runner.py:60} INFO - Started process 64 to run task
+[2024-02-28T12:24:51.365+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'gcs_snowflake_etl', 'transform_data', 'scheduled__2024-02-27T00:00:00+00:00', '--job-id', '29', '--raw', '--subdir', 'DAGS_FOLDER/GCS_to_Snowflake_DAG.py', '--cfg-path', '/tmp/tmp963qls76']
+[2024-02-28T12:24:51.370+0000] {standard_task_runner.py:88} INFO - Job 29: Subtask transform_data
+[2024-02-28T12:24:51.440+0000] {task_command.py:423} INFO - Running <TaskInstance: gcs_snowflake_etl.transform_data scheduled__2024-02-27T00:00:00+00:00 [running]> on host b9a0bf70b495
+[2024-02-28T12:24:51.564+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='stellar' AIRFLOW_CTX_DAG_ID='gcs_snowflake_etl' AIRFLOW_CTX_TASK_ID='transform_data' AIRFLOW_CTX_EXECUTION_DATE='2024-02-27T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='5' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-02-27T00:00:00+00:00'
+[2024-02-28T12:24:51.567+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/GCS_to_Snowflake_DAG.py", line 36, in transform_data
+    storage_client = storage.Client()
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/cloud/storage/client.py", line 172, in __init__
+    super(Client, self).__init__(
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/cloud/client/__init__.py", line 320, in __init__
+    _ClientProjectMixin.__init__(self, project=project, credentials=credentials)
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/cloud/client/__init__.py", line 268, in __init__
+    project = self._determine_default(project)
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/cloud/client/__init__.py", line 287, in _determine_default
+    return _determine_default_project(project)
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/cloud/_helpers/__init__.py", line 152, in _determine_default_project
+    _, project = google.auth.default()
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/auth/_default.py", line 657, in default
+    credentials, project_id = checker()
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/auth/_default.py", line 650, in <lambda>
+    lambda: _get_explicit_environ_credentials(quota_project_id=quota_project_id),
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/auth/_default.py", line 270, in _get_explicit_environ_credentials
+    credentials, project_id = load_credentials_from_file(
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/auth/_default.py", line 114, in load_credentials_from_file
+    raise exceptions.DefaultCredentialsError(
+google.auth.exceptions.DefaultCredentialsError: File ./credentials/r2de-workshop-369208-8179100cc99a.json was not found.
+[2024-02-28T12:24:51.585+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=gcs_snowflake_etl, task_id=transform_data, execution_date=20240227T000000, start_date=20240228T122451, end_date=20240228T122451
+[2024-02-28T12:24:51.601+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 29 for task transform_data (File ./credentials/r2de-workshop-369208-8179100cc99a.json was not found.; 64)
+[2024-02-28T12:24:51.618+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-02-28T12:24:51.653+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-02-28T12:56:19.083+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gcs_snowflake_etl.transform_data scheduled__2024-02-27T00:00:00+00:00 [queued]>
+[2024-02-28T12:56:19.102+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gcs_snowflake_etl.transform_data scheduled__2024-02-27T00:00:00+00:00 [queued]>
+[2024-02-28T12:56:19.102+0000] {taskinstance.py:2170} INFO - Starting attempt 5 of 5
+[2024-02-28T12:56:19.155+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): transform_data> on 2024-02-27 00:00:00+00:00
+[2024-02-28T12:56:19.163+0000] {standard_task_runner.py:60} INFO - Started process 55 to run task
+[2024-02-28T12:56:19.168+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'gcs_snowflake_etl', 'transform_data', 'scheduled__2024-02-27T00:00:00+00:00', '--job-id', '57', '--raw', '--subdir', 'DAGS_FOLDER/GCS_to_Snowflake_DAG.py', '--cfg-path', '/tmp/tmppa49bpm8']
+[2024-02-28T12:56:19.172+0000] {standard_task_runner.py:88} INFO - Job 57: Subtask transform_data
+[2024-02-28T12:56:19.275+0000] {task_command.py:423} INFO - Running <TaskInstance: gcs_snowflake_etl.transform_data scheduled__2024-02-27T00:00:00+00:00 [running]> on host b9a0bf70b495
+[2024-02-28T12:56:19.466+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='stellar' AIRFLOW_CTX_DAG_ID='gcs_snowflake_etl' AIRFLOW_CTX_TASK_ID='transform_data' AIRFLOW_CTX_EXECUTION_DATE='2024-02-27T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='5' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-02-27T00:00:00+00:00'
+[2024-02-28T12:56:19.469+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/GCS_to_Snowflake_DAG.py", line 36, in transform_data
+    storage_client = storage.Client()
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/cloud/storage/client.py", line 172, in __init__
+    super(Client, self).__init__(
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/cloud/client/__init__.py", line 320, in __init__
+    _ClientProjectMixin.__init__(self, project=project, credentials=credentials)
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/cloud/client/__init__.py", line 268, in __init__
+    project = self._determine_default(project)
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/cloud/client/__init__.py", line 287, in _determine_default
+    return _determine_default_project(project)
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/cloud/_helpers/__init__.py", line 152, in _determine_default_project
+    _, project = google.auth.default()
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/auth/_default.py", line 657, in default
+    credentials, project_id = checker()
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/auth/_default.py", line 650, in <lambda>
+    lambda: _get_explicit_environ_credentials(quota_project_id=quota_project_id),
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/auth/_default.py", line 270, in _get_explicit_environ_credentials
+    credentials, project_id = load_credentials_from_file(
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/auth/_default.py", line 114, in load_credentials_from_file
+    raise exceptions.DefaultCredentialsError(
+google.auth.exceptions.DefaultCredentialsError: File D:\GCS_to_Snowflake_WithAirflow\r2de-workshop-369208-8179100cc99a.json was not found.
+[2024-02-28T12:56:19.487+0000] {taskinstance.py:1138} INFO - Marking task as FAILED. dag_id=gcs_snowflake_etl, task_id=transform_data, execution_date=20240227T000000, start_date=20240228T125619, end_date=20240228T125619
+[2024-02-28T12:56:19.554+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 57 for task transform_data (File D:\GCS_to_Snowflake_WithAirflow\r2de-workshop-369208-8179100cc99a.json was not found.; 55)
+[2024-02-28T12:56:19.582+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-02-28T12:56:19.618+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-02-28T13:21:11.367+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gcs_snowflake_etl.transform_data scheduled__2024-02-27T00:00:00+00:00 [queued]>
+[2024-02-28T13:21:11.386+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gcs_snowflake_etl.transform_data scheduled__2024-02-27T00:00:00+00:00 [queued]>
+[2024-02-28T13:21:11.388+0000] {taskinstance.py:2170} INFO - Starting attempt 5 of 7
+[2024-02-28T13:21:11.434+0000] {taskinstance.py:2191} INFO - Executing <Task(PythonOperator): transform_data> on 2024-02-27 00:00:00+00:00
+[2024-02-28T13:21:11.442+0000] {standard_task_runner.py:60} INFO - Started process 61 to run task
+[2024-02-28T13:21:11.447+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'gcs_snowflake_etl', 'transform_data', 'scheduled__2024-02-27T00:00:00+00:00', '--job-id', '110', '--raw', '--subdir', 'DAGS_FOLDER/GCS_to_Snowflake_DAG.py', '--cfg-path', '/tmp/tmprq4bromx']
+[2024-02-28T13:21:11.452+0000] {standard_task_runner.py:88} INFO - Job 110: Subtask transform_data
+[2024-02-28T13:21:11.551+0000] {task_command.py:423} INFO - Running <TaskInstance: gcs_snowflake_etl.transform_data scheduled__2024-02-27T00:00:00+00:00 [running]> on host b9a0bf70b495
+[2024-02-28T13:21:11.666+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='stellar' AIRFLOW_CTX_DAG_ID='gcs_snowflake_etl' AIRFLOW_CTX_TASK_ID='transform_data' AIRFLOW_CTX_EXECUTION_DATE='2024-02-27T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='5' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-02-27T00:00:00+00:00'
+[2024-02-28T13:21:11.672+0000] {taskinstance.py:2698} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 433, in _execute_task
+    result = execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 199, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 216, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/GCS_to_Snowflake_DAG.py", line 32, in transform_data
+    storage_client = storage.Client()
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/cloud/storage/client.py", line 172, in __init__
+    super(Client, self).__init__(
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/cloud/client/__init__.py", line 320, in __init__
+    _ClientProjectMixin.__init__(self, project=project, credentials=credentials)
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/cloud/client/__init__.py", line 268, in __init__
+    project = self._determine_default(project)
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/cloud/client/__init__.py", line 287, in _determine_default
+    return _determine_default_project(project)
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/cloud/_helpers/__init__.py", line 152, in _determine_default_project
+    _, project = google.auth.default()
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/auth/_default.py", line 657, in default
+    credentials, project_id = checker()
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/auth/_default.py", line 650, in <lambda>
+    lambda: _get_explicit_environ_credentials(quota_project_id=quota_project_id),
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/auth/_default.py", line 270, in _get_explicit_environ_credentials
+    credentials, project_id = load_credentials_from_file(
+  File "/home/airflow/.local/lib/python3.8/site-packages/google/auth/_default.py", line 114, in load_credentials_from_file
+    raise exceptions.DefaultCredentialsError(
+google.auth.exceptions.DefaultCredentialsError: File ../GCS_to_Snowflake_WithAirflow/credentials/r2de-workshop-369208-8179100cc99a.json was not found.
+[2024-02-28T13:21:11.692+0000] {taskinstance.py:1138} INFO - Marking task as UP_FOR_RETRY. dag_id=gcs_snowflake_etl, task_id=transform_data, execution_date=20240227T000000, start_date=20240228T132111, end_date=20240228T132111
+[2024-02-28T13:21:11.733+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 110 for task transform_data (File ../GCS_to_Snowflake_WithAirflow/credentials/r2de-workshop-369208-8179100cc99a.json was not found.; 61)
+[2024-02-28T13:21:11.782+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-02-28T13:21:11.826+0000] {taskinstance.py:3280} INFO - 0 downstream tasks scheduled from follow-on schedule check

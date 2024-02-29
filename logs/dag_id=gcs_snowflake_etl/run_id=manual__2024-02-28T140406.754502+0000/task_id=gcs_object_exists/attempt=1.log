@@ -1,0 +1,16 @@
+[2024-02-28T14:04:11.309+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: gcs_snowflake_etl.gcs_object_exists manual__2024-02-28T14:04:06.754502+00:00 [queued]>
+[2024-02-28T14:04:11.320+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: gcs_snowflake_etl.gcs_object_exists manual__2024-02-28T14:04:06.754502+00:00 [queued]>
+[2024-02-28T14:04:11.321+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 3
+[2024-02-28T14:04:11.339+0000] {taskinstance.py:2191} INFO - Executing <Task(GCSObjectExistenceSensor): gcs_object_exists> on 2024-02-28 14:04:06.754502+00:00
+[2024-02-28T14:04:11.345+0000] {standard_task_runner.py:60} INFO - Started process 65 to run task
+[2024-02-28T14:04:11.350+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'gcs_snowflake_etl', 'gcs_object_exists', 'manual__2024-02-28T14:04:06.754502+00:00', '--job-id', '159', '--raw', '--subdir', 'DAGS_FOLDER/GCS_to_Snowflake_DAG.py', '--cfg-path', '/tmp/tmp86vluasr']
+[2024-02-28T14:04:11.356+0000] {standard_task_runner.py:88} INFO - Job 159: Subtask gcs_object_exists
+[2024-02-28T14:04:11.421+0000] {task_command.py:423} INFO - Running <TaskInstance: gcs_snowflake_etl.gcs_object_exists manual__2024-02-28T14:04:06.754502+00:00 [running]> on host b9a0bf70b495
+[2024-02-28T14:04:11.519+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='stellar' AIRFLOW_CTX_DAG_ID='gcs_snowflake_etl' AIRFLOW_CTX_TASK_ID='gcs_object_exists' AIRFLOW_CTX_EXECUTION_DATE='2024-02-28T14:04:06.754502+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-02-28T14:04:06.754502+00:00'
+[2024-02-28T14:04:11.522+0000] {gcs.py:98} INFO - Sensor checks existence of : us_stock_market, US-Stock-Market-Dataset.csv
+[2024-02-28T14:04:11.532+0000] {connection.py:234} WARNING - Connection schemes (type: google_cloud_platform) shall not contain '_' according to RFC3986.
+[2024-02-28T14:04:11.539+0000] {base.py:83} INFO - Using connection ID 'gcp_conn_id' for task execution.
+[2024-02-28T14:04:12.085+0000] {base.py:295} INFO - Success criteria met. Exiting.
+[2024-02-28T14:04:12.099+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=gcs_snowflake_etl, task_id=gcs_object_exists, execution_date=20240228T140406, start_date=20240228T140411, end_date=20240228T140412
+[2024-02-28T14:04:12.167+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2024-02-28T14:04:12.230+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check
