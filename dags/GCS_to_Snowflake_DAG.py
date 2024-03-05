@@ -218,7 +218,7 @@ with DAG("gcs_snowflake_etl",
 
     t9 = EmailOperator(
         task_id="notify_by_email",
-        to=["stallar@gmail.com"],
+        to=["stellar@gmail.com"],
         subject="Loaded data into snowflake successfully on {{ ds }}",
         html_content="Your pipeline has loaded data into snowflake successfully",
     
