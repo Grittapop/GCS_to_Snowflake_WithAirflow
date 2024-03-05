@@ -13,7 +13,7 @@ import io
 
 
 # set key credentials file path
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./credentials/us-stock-market-2020-to-2024-a2e9037800f7.json"
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./credentials/us-stock-market-2020-to-2024-b16ca2e8490c.json"
 
 
 
@@ -86,6 +86,7 @@ with DAG("gcs_snowflake_etl",
         catchup=False
 ) as dag:
 
+
     
     t1 = GCSObjectExistenceSensor(
         task_id= "gcs_object_exists",
@@ -97,33 +98,38 @@ with DAG("gcs_snowflake_etl",
     )
     
 
+
     t2 = PythonOperator(
         task_id= "transform_data",
         python_callable= transform_data,
     )
 
 
+
     t3 = SnowflakeOperator(
             task_id = "create_snowflake_database",
-            snowflake_conn_id = "conn_id_snowflake",           
+            snowflake_conn_id = "snowflake_conn_id",           
             sql = """
                     CREATE DATABASE IF NOT EXISTS Project_US_Stock_Market ;
             """
     )
     
+
     
     t4 = SnowflakeOperator(
             task_id = "create_snowflake_schema",
-            snowflake_conn_id = "conn_id_snowflake",           
+            snowflake_conn_id = "snowflake_conn_id",           
             sql = """
                     CREATE SCHEMA IF NOT EXISTS Stock_Market ;
             """
         )
 
 
+
+
     t5 = SnowflakeOperator(
         task_id = "create_snowflake_table",
-        snowflake_conn_id = "conn_id_snowflake",           
+        snowflake_conn_id = "snowflake_conn_id",           
         sql = """
                 CREATE TABLE IF NOT EXISTS US_Stock_Market_2020_To_2024(
                     Date datetime,
@@ -167,39 +173,44 @@ with DAG("gcs_snowflake_etl",
             );
         """
     )
-    
+
+
 
     t6 = SnowflakeOperator(
-        task_id = "create_snowflake_external_stage",
-        snowflake_conn_id = "conn_id_snowflake",           
-        sql = """
-                CREATE STORAGE INTEGRATION GCS_Stage
-                    TYPE = EXTERNAL_STAGE
-                    STORAGE_PROVIDER = GCS
-                    ENABLED = TRUE
-                    STORAGE_ALLOWED_LOCATIONS  = ('gcs://stock_market_us/transform/Transform-Data-US-Stock-Market-2020-to-2024.csv');
-                                    
-        """
-    )
-
-
-    t7 = SnowflakeOperator(
         task_id = "create_snowflake_file_format",
-        snowflake_conn_id = "conn_id_snowflake",           
+        snowflake_conn_id = "snowflake_conn_id",           
         sql = """
                 CREATE OR REPLACE file format csv_format type = 'csv' compression = 'auto' 
                     field_delimiter = ',' record_delimiter = '\n'
                     skip_header = 1 trim_space = false;
+                                        
+        """
+    )
+
+
+
+    t7 = SnowflakeOperator(
+        task_id = "create_snowflake_external_stage",
+        snowflake_conn_id = "snowflake_conn_id",           
+        sql = """
+                CREATE OR REPLACE STAGE gcs_stage
+                    URL = 'gcs://stock_market_us/transform/Transform-Data-US-Stock-Market-2020-to-2024.csv'
+                    STORAGE_INTEGRATION = gcs_int
+                    file_format=csv_format;
                                     
         """
     )
 
 
+    
+
     t8 = SnowflakeOperator(
         task_id = "load_data_into_the_table",
-        snowflake_conn_id = "conn_id_snowflake",           
+        snowflake_conn_id = "snowflake_conn_id",           
         sql = """
-                COPY INTO US_Stock_Market_2020_To_2024 from @GCS_Stage file_format=csv_format;
+                USE WAREHOUSE STELLAR;
+                
+                COPY INTO US_Stock_Market_2020_To_2024 FROM @gcs_stage file_format=csv_format on_error='CONTINUE';
 
         """
     )
@@ -207,7 +218,7 @@ with DAG("gcs_snowflake_etl",
 
     t9 = EmailOperator(
         task_id="notify_by_email",
-        to=["stellar.p@gmail.com"],
+        to=["stallar@gmail.com"],
         subject="Loaded data into snowflake successfully on {{ ds }}",
         html_content="Your pipeline has loaded data into snowflake successfully",
     
@@ -215,4 +226,4 @@ with DAG("gcs_snowflake_etl",
 
 
 
-t1 >> t2 >> t3 >> t4 >> t5 >> t6 >> t7 >> t8 >> t9
+t1 >> t2 >> t3 >> t4 >> t5 >> t6 >> t7 >> t8 >> t9 
