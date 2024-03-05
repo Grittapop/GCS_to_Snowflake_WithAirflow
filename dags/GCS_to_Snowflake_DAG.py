@@ -122,7 +122,7 @@ with DAG("gcs_snowflake_etl",
             sql = """
                     CREATE SCHEMA IF NOT EXISTS Stock_Market ;
             """
-        )
+    )
 
 
 
