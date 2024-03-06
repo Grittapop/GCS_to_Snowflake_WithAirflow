@@ -19,7 +19,7 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "./credentials/us-stock-market-20
 
 # bucket and destination GCS
 bucket_name = "stock_market_us"
-destination_row_data_file_name = "row/Row-Data-US-Stock-Market-2020-to-2024.csv"
+destination_row_data_file_name = "raw/Raw-Data-US-Stock-Market-2020-to-2024.csv"
 destination_transform_data_file_name = "transform/Transform-Data-US-Stock-Market-2020-to-2024.csv"
 
 
